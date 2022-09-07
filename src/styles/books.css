@@ -1,0 +1,36 @@
+.book-cont{
+    border: 1px solid black;
+    padding: 20px;
+    width: 67%;
+    margin: auto;
+}
+.book-form{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 25px;
+}
+.book-form > input, .book-status{
+    /* width: 35%; */
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: rgb(236, 241, 247);
+    border: none;
+    border-radius: 5px;
+}
+.book-select-hidden{
+    display: none;
+}
+.book-status > option{
+    font-size: 15px;
+}
+#bookCont-submit-btn{
+    width: 50%;
+    background-color: rgb(25,118,209);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}

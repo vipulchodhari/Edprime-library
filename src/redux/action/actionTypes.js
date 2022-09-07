@@ -1,0 +1,27 @@
+//------------------ category types-------------
+
+export const REQUEST_FETCHDATA = "REQUEST_FETCHDATA";
+export const RECEIVE_FETCHDATA = "RECEIVE_FETCHDATA";
+
+export const REQUEST_DELETE = "REQUEST_DELETE";
+export const RECEIVE_DELETE = "RECEIVE_DELETE";
+
+export const REQUEST_ADD_DATA = "REQUEST_ADD_DATA";
+export const RECEIVE_ADD_DATA = "RECEIVE_ADD_DATA";
+
+export const REQUEST_EDIT_DATA = "REQUEST_EDIT_DATA";
+export const RECEIVE_EDIT_DATA = "RECEIVE_EDIT_DATA";
+
+//------------------ author types-------------
+
+export const REQUEST_AUTHOR_DATA = "REQUEST_AUTHOR_DATA";
+export const RECEIVE_AUTHOR_DATA = "RECEIVE_AUTHOR_DATA";
+
+export const REQUEST_DELETE_AUTHOR = "REQUEST_DELETE_AUTHOR";
+export const RECEIVE_DELETE_AUTHOR = "RECEIVE_DELETE_AUTHOR";
+
+export const REQUEST_ADD_AUTHOR = "REQUEST_ADD_AUTHOR";
+export const RECEIVE_ADD_AUTHOR = "RECEIVE_ADD_AUTHOR";
+
+export const REQUEST_EDIT_AUTHOR = "REQUEST_EDIT_AUTHOR";
+export const RECEIVE_EDIT_AUTHOR = "RECEIVE_EDIT_AUTHOR";

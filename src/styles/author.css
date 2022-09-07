@@ -1,0 +1,8 @@
+.author-search{
+    position: relative;
+}
+.author-searchIcon{
+    position: absolute;
+    right: 66%;
+    top: 10px;
+}

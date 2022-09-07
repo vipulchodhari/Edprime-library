@@ -1,0 +1,53 @@
+.navbar-form{
+    /* border: 1px solid black; */
+    width: 90%;
+    margin: auto;
+}
+.navbar-searchIcon{
+    position: absolute;
+    margin-left: -95px;
+    margin-top: 7px;
+}
+.navbar-form>input{
+    padding: 11px 0px;
+    padding-left: 35px;
+    border: none;
+    background-color: rgb(236, 241, 247);
+    border-radius: 3px;
+}
+.navbar-form > input:focus{
+    /* box-shadow: none; */
+    outline: 0px;
+}
+.navbar-heading{
+    margin-bottom: -50px;
+    text-align: left;
+    margin-left: 23px;
+    color: rgb(75, 74, 74);
+}
+.navbar-icon{
+    margin-left: 8px;
+    margin-top: -2.5px;
+}
+.d-icon1{
+    color: rgb(25,118,209);
+}
+.d-icon2{
+    color: rgb(250,139,40);
+}
+.d-icon3{
+    color: rgb(63,74,74); 
+}
+.d-icon4{
+    color: rgb(91,201,128);
+}
+.d-icon5{
+    color: rgb(142,225,106);
+}
+.navbar-icon-text{
+    margin-left: -8px;
+    color: rgb(63,74,74);
+}
+.link-decoration{
+    text-decoration: none;
+}
