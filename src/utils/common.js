@@ -2,6 +2,11 @@ import { fileOpen } from "browser-fs-access";
 
 export const authorUrl = `http://192.100.100.52:5000/authors`;
 export const booksUrl = `http://192.100.100.34:3000/books`;
+export const genresUrl = `http://192.100.100.58:3001/genres`;
+export const classUrl = `http://192.100.100.58:3001/ed-classes`;
+export const subjectUrl = 'http://192.100.100.58:3001/subjects';
+export const languageUrl = 'http://192.100.100.58:3001/languages';
+export const categoryUrl = 'http://192.100.100.58:3000/book-categories';
 
 export async function imgInputFilePicker() {
     const blob = await fileOpen({

@@ -2,23 +2,39 @@ import axios from "axios";
 import Multiselect from "multiselect-react-dropdown"
 import { useEffect, useState } from "react";
 import "../../styles/books.css";
+import { getAuthorData, getCategoryData, getClassData, getGenreData, getLanguageData, getSubjectData } from "../../utils/getApi";
 
 export const Books = () => {
-    const [bookData, setBookData] = useState([]);
+    const [aunthorData, setAuthorData] = useState([]);
+    const [genreData, setGenreData] = useState([]);
+    const [classData, setClassData] = useState([]);
+    const [subjectData, setSubjectData] = useState([]);
+    const [languageData, setLanguageData] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
     const [author, setAuthor] = useState([]);
-    console.log('seclect author', author);
+    const [genre, setGenre] = useState([]);
+    const [classs, setClasss] = useState([]);
+    const [subject, setSubject] = useState([]);
+
+    console.log('author seclect,', author);
+    console.log('genre seclect,', genre);
+    console.log('classs seclect,', classs);
+    console.log('subject seclect,', subject);
     const [text, setText] = useState({
         book_title: "",
         category_id: "",
-        genre_id: "",
         language_id: "",
-        class_id: "",
-        subject_id: "",
         isbn: "",
         book_Images: "",
         status: "",
         created_by: ""
     })
+
+    // const { booksAddData } = useSelector((state) => ({
+    //     booksAddData: state.booksAddState.data
+    // }))
+    // console.log("saga data in component", booksAddData);
+    // const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const { name } = e.target;
@@ -26,7 +42,7 @@ export const Books = () => {
             ...text,
             [name]: e.target.value
         })
-        console.log("text", text);
+        // console.log("text", text);
     }
 
     const handleSubmit = () => {
@@ -34,10 +50,10 @@ export const Books = () => {
             book_title: text.book_title,
             category_id: text.category_id,
             author_id: author,
-            genre_id: [text.genre_id],
+            genre_id: genre,
             language_id: text.language_id,
-            class_id: [text.class_id],
-            subject_id: [text.subject_id],
+            class_id: classs,
+            subject_id: subject,
             isbn: text.isbn,
             book_Images: text.book_Images,
             status: text.status,
@@ -47,33 +63,55 @@ export const Books = () => {
             .catch((err) => console.log("post error", err.response.data.error))
     }
 
-    const getBookData = () => {
-        fetch(`http://192.100.100.52:5000/authors`)
-            .then((data) => data.json())
-            .then((res) => setBookData(res))
-    }
-    // console.log("data", bookData);
     useEffect(() => {
-        getBookData()
+        getAuthorData().then((res) => setAuthorData(res))
+        getGenreData().then((res) => setGenreData(res))
+        getClassData().then((res) => setClassData(res))
+        getSubjectData().then((res) => setSubjectData(res))
+        getLanguageData().then((res) => setLanguageData(res))
+        getCategoryData().then((res) => setCategoryData(res))
     }, [])
 
     const removeAuthor = async (arr, element) => {
         setAuthor(arr.filter(chekout))
-
         function chekout(target){
             let el = element;
             return target !== el;
         }
         // console.log('seclect author', author); 
     }
+
+    const removeGenre = async (arr, element) => {
+        setGenre(arr.filter(chekout))
+        function chekout(target){
+            let el = element;
+            return target !== el;
+        }
+    }
+
+    const removeClass = async (arr, element) => {
+        setClasss(arr.filter(chekout))
+        function chekout(target){
+            let el = element;
+            return target !== el;
+        }
+    }
+
+    const removeSubject = async (arr, element) => {
+        setSubject(arr.filter(chekout))
+        function chekout(target){
+            let el = element;
+            return target !== el;
+        }
+    }
     return <div className="book-controller">
         <h1>Book Manage</h1>
         <div className="book-cont">
             <form className='book-form' onSubmit={(e) => e.preventDefault()}>
                 <Multiselect 
-                    options={bookData}
+                    options={aunthorData}
                     displayValue="title"   
-                    closeIcon="close"
+                    // closeIcon="close"
                     onKeyPressFn={function noRefCheck() { }}
                     onRemove={(selectedList,selectedItem) => {
                         removeAuthor(selectedList,selectedItem);    
@@ -82,27 +120,72 @@ export const Books = () => {
                     onSelect={(selectedList,selectedItem) => {
                         let autId = [...author, selectedItem.id]
                         setAuthor(autId);
-                        // console.log("id", autId);
-                        // console.log("selectedList", selectedItem);
                     }}
                     placeholder={"Select author"}
                 />
                 <input onChange={handleChange} name='book_title' type='text' placeholder="Enter book title..." />
-                <input onChange={handleChange} name="category_id" type='text' placeholder="Enter category name..." />
-                <input onChange={handleChange} name="genre_id" type='text' placeholder="Enter genre name..." />
-                <input onChange={handleChange} name="language_id" type='text' placeholder="Enter language..." />
-                <input onChange={handleChange} name="class_id" type='text' placeholder="Enter class..." />
-                <input onChange={handleChange} name="subject_id" type='text' placeholder="Enter subject..." />
+                <select className="book-status" name="category_id" onChange={handleChange}>
+                    <option className="book-select-hidden">Select Category</option>
+                    {categoryData.map((el, i) => {
+                        return <option value={el.id} key={i}>{el.title}</option>
+                    })}
+                </select>
+                <Multiselect 
+                    options={genreData}
+                    displayValue="title"   
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={(selectedList,selectedItem) => {
+                        removeGenre(selectedList,selectedItem);    
+                    }}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={(selectedList,selectedItem) => {
+                        let autId = [...genre, selectedItem.id]
+                        setGenre(autId);
+                    }}
+                    placeholder={"Select Genre"}
+                />
+                <select className="book-status" name="language_id" onChange={handleChange}>
+                    <option className="book-select-hidden">Select Language</option>
+                    {languageData.map((el, i) => {
+                        return <option value={el.id} key={i}>{el.title}</option>
+                    })}
+                </select>
+                <Multiselect 
+                    options={classData}
+                    displayValue="title"   
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={(selectedList,selectedItem) => {
+                        removeClass(selectedList,selectedItem);    
+                    }}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={(selectedList,selectedItem) => {
+                        let autId = [...classs, selectedItem.id]
+                        setClasss(autId);
+                    }}
+                    placeholder={"Select Class"}
+                />
+                <Multiselect 
+                    options={subjectData}
+                    displayValue="title"   
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={(selectedList,selectedItem) => {
+                        removeSubject(selectedList,selectedItem);    
+                    }}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={(selectedList,selectedItem) => {
+                        let autId = [...subject, selectedItem.id]
+                        setSubject(autId);
+                    }}
+                    placeholder={"Select Subject"}
+                />
                 <input onChange={handleChange} name="isbn" type='text' placeholder="Enter isbn..." />
                 <input onChange={handleChange} name="book_Images" type='text' placeholder="Enter book images..." />
-                {/* <input onChange={handleChange} name="status" type='text' placeholder="Enter book title1235..." /> */}
                 <select className="book-status" name="status" onChange={handleChange}>
                     <option className="book-select-hidden">Select</option>
-                    <option value='Active'>Active</option>
-                    <option value='In Active'>In Active</option>
+                    <option value='true'>Active</option>
+                    <option value='false'>In Active</option>
                 </select>
                 <input onChange={handleChange} name="created_by" type='text' placeholder="Create By..." /><br/>
-                {/* <input type='text' placeholder="Enter book title..." /> */}
 
                 <input onClick={handleSubmit} id='bookCont-submit-btn' type='submit' />
             </form>

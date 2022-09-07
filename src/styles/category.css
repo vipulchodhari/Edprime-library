@@ -44,7 +44,11 @@
 }
 .category-list-table>tbody>tr>th,
 .category-list-table>tbody>tr>td{
-    border: 1px solid black
+    border: 1px solid black;
+}
+.category-list-table>tbody>tr>td{
+    color: rgb(63,74,74);
+    font-weight: 600;
 }
 .category-list-table>tbody>tr>td:nth-child(4),
 .category-list-table>tbody>tr>td:nth-child(5){

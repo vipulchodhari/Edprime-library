@@ -25,3 +25,14 @@ export const RECEIVE_ADD_AUTHOR = "RECEIVE_ADD_AUTHOR";
 
 export const REQUEST_EDIT_AUTHOR = "REQUEST_EDIT_AUTHOR";
 export const RECEIVE_EDIT_AUTHOR = "RECEIVE_EDIT_AUTHOR";
+
+//-----------------books add types----------------------------
+
+export const REQUEST_SUBJECT_DATA = "REQUEST_SUBJECT_DATA";
+export const RECEIVE_SUBJECT_DATA = "RECEIVE_SUBJECT_DATA";
+
+export const REQUEST_GENRE_DATA = "REQUEST_GENRE_DATA";
+export const RECEIVE_GENRE_DATA = "RECEIVE_GENRE_DATA";
+
+export const REQUEST_CLASS_DATA = "REQUEST_CLASS_DATA";
+export const RECEIVE_CLASS_DATA = "RECEIVE_CLASS_DATA";

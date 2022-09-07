@@ -5,6 +5,7 @@ import { Category } from './components/category/Category';
 import { Books } from './components/books/Books';
 import { Navbar } from './components/Navbar';
 import { Dashboard } from './components/dashboard/Dashboard';
+import { AuthorDetails } from './components/author/AuthorDetails';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/books' element={<Books/>}></Route>
         <Route path='/category' element={<Category/>}></Route>
         <Route path='/author' element={<Author/>}></Route>
+        <Route path='/author-details' element={<AuthorDetails/>}></Route>
       </Routes>
     </div>
   );

@@ -9,6 +9,7 @@ import { imgInputFilePicker } from '../../utils/common';
 import customerBorder from '../../assets/upload.jpg';
 import SearchIcon from '@mui/icons-material/Search';
 import '../../styles/author.css';
+import { Link } from 'react-router-dom';
 
 export const Author = () => {
     const [editData, setEditData] = useState();
@@ -63,7 +64,7 @@ export const Author = () => {
     // }
 
     const handleDelete = (item) => {
-        if(item.status === true){
+        if (item.status === true) {
             item.status = false;
             dispatch(Request_Author_Delete(item.status, item.id))
         }
@@ -163,32 +164,42 @@ export const Author = () => {
                     </tr>
 
                     {authorData.map((item, i) => (
-                       
                         item.status === true ?
                         <tr key={i}>
-                            <td>{item.status===false?i-1:i+1}</td>
+                            <td>{item.status === false ? i - 1 : i + 1}</td>
                             {/* <td>{i+1}</td> */}
-                            <td className='category-list-imgTag'><img className='category-list-img' src={`data:image/jpeg;base64,${item.author_image}`} alt='' /></td>
+                            <td className='category-list-imgTag'>
+                                <Link to='/author-details' className='link-decoration'>
+                                    <img className='category-list-img' src={`data:image/jpeg;base64,${item.author_image}`} alt='' />
+                                </Link>
+                            </td>
+
                             {/* <td className='category-list-imgTag'><img className='category-list-img' src={item.author_image} alt=''/></td> */}
-                            <td>{item.title}</td>
+                            <td>
+                                <Link to='/author-details' className='link-decoration'>
+                                    {item.title}
+                                </Link>
+                            </td> 
                             <td>{item.created_by}</td>
                             <td>
                                 <img
                                     alt='Delete'
                                     src={remove}
                                     onClick={(e) => handleDelete(item)}
-                                    className='category-list-icon' />
+                                    className='category-list-icon'
+                                />
                             </td>
                             <td>
                                 <img
                                     alt='Edit'
                                     className='category-list-icon'
                                     onClick={(e) => handleEdit(item)}
-                                    src={edit} />
+                                    src={edit}
+                                />
                             </td>
-                        </tr> 
+                        </tr>
                         : ""
-                       )
+                    )
                     )}
                 </tbody>
             </table>
