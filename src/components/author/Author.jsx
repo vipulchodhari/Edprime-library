@@ -14,8 +14,7 @@ import { Link } from 'react-router-dom';
 export const Author = () => {
     const [editData, setEditData] = useState();
     const [close, setClose] = useState(false);
-    // const [query, setQuery] = useState("");
-    const [count, setCount] = useState();
+    
     const [text, setText] = useState({
         title: "",
         author_image: "",
@@ -25,7 +24,9 @@ export const Author = () => {
     const { authorData } = useSelector((state) => ({
         authorData: state.authorState.data
     }))
-    // console.log("saga data in component", authorData);
+    console.log("saga data in component", authorData);
+    // const [queryData, setQueryData] = useState(authorData);
+    // console.log("queryData", queryData);
 
     const dispatch = useDispatch();
     const handleChange = (e) => {
@@ -88,8 +89,8 @@ export const Author = () => {
         e.preventDefault()
         let query = e.target.value;
         console.log("query", query);
-        axios.get(`http://192.100.100.52:3500/authors?q=${query}`)
-            .then((res) => console.log("filter data", res))
+        // axios.get(`http://192.100.100.52:5000/authors?q=${query}`)
+        //     .then((res) => setQueryData(...queryData, res.data))
     };
 
     useEffect(() => {
@@ -147,7 +148,7 @@ export const Author = () => {
                 <SearchIcon className='author-searchIcon' />
                 <input onChange={filterData} type='text' placeholder='Search by name...' />&nbsp;&nbsp;
 
-                <input id='submit-btn' type='submit' />
+                {/* <input id='submit-btn' type='submit' /> */}
             </form>
         </div>
 
@@ -164,22 +165,18 @@ export const Author = () => {
                     </tr>
 
                     {authorData.map((item, i) => (
-                        item.status === true ?
                         <tr key={i}>
-                            <td>{item.status === false ? i - 1 : i + 1}</td>
-                            {/* <td>{i+1}</td> */}
-                            <td className='category-list-imgTag'>
+                            <td>{i + 1}</td>
+                            <td className='author-list-imgTag'>
                                 <Link to='/author-details' className='link-decoration'>
-                                    <img className='category-list-img' src={`data:image/jpeg;base64,${item.author_image}`} alt='' />
+                                    <img className='author-list-img' src={`data:image/jpeg;base64,${item.author_image}`} alt='' />
                                 </Link>
                             </td>
-
-                            {/* <td className='category-list-imgTag'><img className='category-list-img' src={item.author_image} alt=''/></td> */}
                             <td>
                                 <Link to='/author-details' className='link-decoration'>
                                     {item.title}
                                 </Link>
-                            </td> 
+                            </td>
                             <td>{item.created_by}</td>
                             <td>
                                 <img
@@ -198,9 +195,7 @@ export const Author = () => {
                                 />
                             </td>
                         </tr>
-                        : ""
-                    )
-                    )}
+                    ))}
                 </tbody>
             </table>
 

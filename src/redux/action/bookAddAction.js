@@ -1,4 +1,4 @@
-import { REQUEST_CLASS_DATA, REQUEST_GENRE_DATA, REQUEST_SUBJECT_DATA } from "./actionTypes";
+import { REQUEST_CLASS_DATA, REQUEST_EDITBOOK_DATA, REQUEST_GENRE_DATA, REQUEST_SUBJECT_DATA } from "./actionTypes";
 
 export const Request_Subject_Data = () => {
     console.log('action called');
@@ -14,9 +14,10 @@ export const Request_Genre_Data = () => {
     }
 }
 
-export const Request_Class_Data = () => {
-    console.log('action called');
+export const Request_BookEdit_Data = (data) => {
+    console.log('action called', data);
     return {
-        type: REQUEST_CLASS_DATA
+        type: REQUEST_EDITBOOK_DATA,
+        payload: data
     }
 }

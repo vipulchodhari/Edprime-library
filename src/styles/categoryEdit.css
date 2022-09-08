@@ -9,8 +9,9 @@
     right: 0;
     text-align: center;
     transform: translateY(-30%);
-    background-color: black;
+    background-color: whitesmoke;
     border-radius: 5px;
+    border: 1px solid black;
   }
   .categoryedit-input {
     margin-bottom: 12px;

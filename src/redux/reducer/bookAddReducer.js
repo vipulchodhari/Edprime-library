@@ -1,4 +1,4 @@
-import { RECEIVE_CLASS_DATA, RECEIVE_GENRE_DATA } from "../action/actionTypes"
+import { RECEIVE_CLASS_DATA, RECEIVE_EDITBOOK_DATA, RECEIVE_GENRE_DATA } from "../action/actionTypes"
 
 const init_state = {
     data: []
@@ -12,10 +12,10 @@ export const bookAddReducer = (state = init_state, { type, payload }) => {
                 ...state,
                 data: payload.data.data
             }
-        case RECEIVE_CLASS_DATA:
+        case RECEIVE_EDITBOOK_DATA:
             console.log("reducer data", payload.data.data);
             return {
-                // ...state,
+                ...state,
                 data: payload.data.data
             }
 

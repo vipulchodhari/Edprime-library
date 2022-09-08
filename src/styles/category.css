@@ -1,10 +1,10 @@
 .user-container{
     margin: 25px;
 }
-.user-form-cont, .author-cont{
+.user-form-cont, .author-cont, .books-cont{
     border: 1px solid black;
     padding: 20px;
-    width: 67%;
+    width: 64%;
     margin: auto;
     text-align: left;
 }
@@ -32,12 +32,12 @@
 .category-list-cont{
     border: 1px solid black;
     padding: 20px;
-    width: 67%;
+    width: 64%;
     margin: auto;
 }
 .category-list-table{
     border: 1px solid black;
-    /* width: 95%; */
+    width: 100%;
 }
 .category-list-table>tbody>tr>th{
     background-color: rgb(247, 188, 136);
@@ -64,15 +64,8 @@
     width: 40%;
     cursor: pointer;
 }
-.category-list-img{
-    width: 80%;
-    border-radius: 5px;
-}
-.category-list-imgTag{
-    width: 10%;
-    /* padding: 10px; */
-    padding-top: 8px;
-}
+
+
 
 
 

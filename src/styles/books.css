@@ -1,16 +1,16 @@
-.book-cont{
+.addbook-cont, .books-add-btn{
     border: 1px solid black;
     padding: 20px;
-    width: 67%;
+    width: 64%;
     margin: auto;
 }
-.book-form{
+.addbook-form{
     margin-top: 20px;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 30% 65%;
     gap: 25px;
 }
-.book-form > input, .book-status{
+.addbook-form > input, .addbook-status{
     /* width: 35%; */
     padding: 12px;
     margin-bottom: 15px;
@@ -18,13 +18,13 @@
     border: none;
     border-radius: 5px;
 }
-.book-select-hidden{
+.addbook-select-hidden{
     display: none;
 }
-.book-status > option{
+.addbook-status > option{
     font-size: 15px;
 }
-#bookCont-submit-btn{
+#addbookCont-submit-btn{
     width: 50%;
     background-color: rgb(25,118,209);
     color: #fff;
@@ -33,4 +33,29 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+}
+.addbook-lable{
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    margin-top: 5px;
+}
+.add-books-btn{
+    width: 30%;
+    background-color: rgb(25,118,209);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 13px;
+    cursor: pointer;
+}
+.books-list-table>tbody>tr>td:nth-child(5),
+.books-list-table>tbody>tr>td:nth-child(6){
+    width: 10%;
+    padding: 5px 15px;
+}
+.books-list-table>tbody>tr>th:nth-child(1){
+    width: 10%;
 }

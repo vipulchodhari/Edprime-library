@@ -6,3 +6,23 @@
     right: 66%;
     top: 10px;
 }
+.author-list-img{
+    width: 80%;
+    border-radius: 5px;
+}
+.author-list-imgTag{
+    width: 10%;
+    /* padding: 10px; */
+    padding-top: 8px;
+}
+.authoredit-close-btn{
+    text-align: right;
+    margin-top: -15px;
+    margin-right: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.authoredit-close-btn:hover{
+    font-size: 20px;
+}

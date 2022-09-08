@@ -28,6 +28,7 @@ export const AuthorEdit = ({ setClose, editData, }) => {
         setClose(false)
     }
     return <div className='categoryedit-cont'>
+        <p className="authoredit-close-btn" onClick={() => {setClose(false)}}>x</p>
         <form onSubmit={handleSubmit} className='categoryedit-form'>
             <img
                 style={{ width: "90px", height: "90px", borderRadius: "50%", cursor: 'pointer' }}
@@ -45,11 +46,6 @@ export const AuthorEdit = ({ setClose, editData, }) => {
                 className='categoryedit-input'
                 onChange={(e) => setEName(e.target.value)}
             />
-            {/* <input
-                value={Eemage}
-                className='categoryedit-input'
-                onChange={(e) => setEemage(e.target.value)}
-            /> */}
             <input
                 value={EcreateBy}
                 className='categoryedit-input'
