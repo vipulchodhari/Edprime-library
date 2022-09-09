@@ -1,7 +1,7 @@
 import { fileOpen } from "browser-fs-access";
 
-export const authorUrl = `http://192.100.100.52:5000/authors`;
-// export const authorUrl = `http://192.100.100.52:3001/authors`;
+// export const authorUrl = `http://192.100.100.52:5000/authors`;
+export const authorUrl = `http://192.100.100.52:3002/authors`;
 export const booksUrl = `http://192.100.100.52:5000/books`;
 export const genresUrl = `http://192.100.100.111:3001/genres`;
 export const classUrl = `http://192.100.100.111:3001/ed-classes`;

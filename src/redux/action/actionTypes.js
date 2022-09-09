@@ -26,6 +26,9 @@ export const RECEIVE_ADD_AUTHOR = "RECEIVE_ADD_AUTHOR";
 export const REQUEST_EDIT_AUTHOR = "REQUEST_EDIT_AUTHOR";
 export const RECEIVE_EDIT_AUTHOR = "RECEIVE_EDIT_AUTHOR";
 
+export const REQUEST_FILTER_AUTHOR = "REQUEST_FILTER_AUTHOR";
+export const RECEIVE_FILTER_AUTHOR = "RECEIVE_FILTER_AUTHOR";
+
 //-----------------books add types----------------------------
 
 export const REQUEST_SUBJECT_DATA = "REQUEST_SUBJECT_DATA";

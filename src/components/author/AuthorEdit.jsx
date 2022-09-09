@@ -6,31 +6,31 @@ import customerBorder from '../../assets/upload.jpg';
 
 export const AuthorEdit = ({ setClose, editData, }) => {
     const [Ename, setEName] = useState(editData.title);
-    const [Eemage, setEemage] = useState(editData.author_image);
+    // const [Eemage, setEemage] = useState(editData.author_image);
     const [EcreateBy, setEcreateBy] = useState(editData.created_by);
     const dispatch = useDispatch()
 
-    // console.log("receive edit", editData);
+    console.log("receive edit", editData);
 
-    const handleUpload = async () => {
-        try {
-            const authorImg = await imgInputFilePicker();
-           setEemage(authorImg.base64)
-        } catch(err){
-            console.log("error", err);
-        }
-    }
+    // const handleUpload = async () => {
+    //     try {
+    //         const authorImg = await imgInputFilePicker();
+    //        setEemage(authorImg.base64)
+    //     } catch(err){
+    //         console.log("error", err);
+    //     }
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         // dispatch(Request_Edit_Data(Ename, EStatus, editData._id))
-        dispatch(Request_Edit_author(Ename, Eemage, EcreateBy, editData.id))
+        dispatch(Request_Edit_author(Ename, EcreateBy, editData._id))
         setClose(false)
     }
     return <div className='categoryedit-cont'>
         <p className="authoredit-close-btn" onClick={() => {setClose(false)}}>x</p>
         <form onSubmit={handleSubmit} className='categoryedit-form'>
-            <img
+            {/* <img
                 style={{ width: "90px", height: "90px", borderRadius: "50%", cursor: 'pointer' }}
                 onClick={handleUpload}
                 src={
@@ -40,7 +40,7 @@ export const AuthorEdit = ({ setClose, editData, }) => {
                 }
                 alt=""
                 title=""
-            /><br />
+            /><br /> */}
             <input
                 value={Ename}
                 className='categoryedit-input'

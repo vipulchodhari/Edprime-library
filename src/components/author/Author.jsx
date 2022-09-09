@@ -2,7 +2,7 @@ import edit from '../../assets/edit.png';
 import remove from '../../assets/remove.png';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Request_Add_author, Request_Author_Data, Request_Author_Delete } from "../../redux/action/authorAction";
+import { Request_Add_author, Request_Author_Data, Request_Author_Delete, Request_Filter_author } from "../../redux/action/authorAction";
 import { AuthorEdit } from './AuthorEdit';
 import axios from 'axios';
 import { imgInputFilePicker } from '../../utils/common';
@@ -64,15 +64,8 @@ export const Author = () => {
     //     }
     // }
 
-    const handleDelete = (item) => {
-        if (item.status === true) {
-            item.status = false;
-            dispatch(Request_Author_Delete(item.status, item.id))
-        }
-        // else{
-        //     item.status = true;
-        //     dispatch(Request_Author_Delete(item.status, item.id))
-        // }
+    const handleDelete = (id) => {
+        dispatch(Request_Author_Delete(id))
     }
 
     const handleEdit = (item) => {
@@ -88,9 +81,8 @@ export const Author = () => {
     const filterData = (e) => {
         e.preventDefault()
         let query = e.target.value;
-        console.log("query", query);
-        // axios.get(`http://192.100.100.52:5000/authors?q=${query}`)
-        //     .then((res) => setQueryData(...queryData, res.data))
+
+        dispatch(Request_Filter_author(query))
     };
 
     useEffect(() => {
@@ -144,11 +136,8 @@ export const Author = () => {
             </form>
 
             <form className='user-form author-search'>
-                {/* <input onChange={(e) => setQuery(e.target.value)} type='text' placeholder='Search by name...'/>&nbsp;&nbsp; */}
                 <SearchIcon className='author-searchIcon' />
                 <input onChange={filterData} type='text' placeholder='Search by name...' />&nbsp;&nbsp;
-
-                {/* <input id='submit-btn' type='submit' /> */}
             </form>
         </div>
 
@@ -182,7 +171,7 @@ export const Author = () => {
                                 <img
                                     alt='Delete'
                                     src={remove}
-                                    onClick={(e) => handleDelete(item)}
+                                    onClick={(e) => handleDelete(item._id)}
                                     className='category-list-icon'
                                 />
                             </td>

@@ -15,11 +15,11 @@ export const Request_Delete = (id) => {
     }
 }
 
-export const Request_Add_Data = (name, Status) => {
-    // console.log("add action called", name, Status);
+export const Request_Add_Data = (title, status) => {
+    // console.log("add action called", title, status);
     return {
         type: REQUEST_ADD_DATA,
-        payload: {name, Status}
+        payload: {title, status}
     }
 }
 

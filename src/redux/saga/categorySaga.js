@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
-import { booksUrl } from '../../utils/common';
+import { booksUrl, categoryUrl } from '../../utils/common';
 import { RECEIVE_ADD_DATA, RECEIVE_DELETE, RECEIVE_EDIT_DATA, RECEIVE_FETCHDATA, REQUEST_ADD_DATA, REQUEST_DELETE, REQUEST_EDIT_DATA, REQUEST_FETCHDATA } from '../action/actionTypes';
 
 function* getData(){
-    let data = yield axios.get(booksUrl)
+    let data = yield axios.get(categoryUrl)
 
     // console.log("fetch data in saga", data);
 
@@ -14,40 +14,44 @@ function* getData(){
 function* deleteData(payload){
     // console.log("id in saga", payload);
     let id = payload.id;
-    yield axios.delete(`http://192.100.100.34:3000/books/${id}`)
+    yield axios.delete(`http://192.100.100.111:3001/book-categories/${id}`)
 
     alert('Your category deleted')
 
-    let data = yield axios.get(booksUrl)
+    let data = yield axios.get(categoryUrl)
     // console.log("delete data in saga", data);
     yield put({type: RECEIVE_DELETE, payload:{data}})
 }
 
 function* addData(payload){
-    // console.log("before add data in saga", payload);
-    yield axios.post(booksUrl, {
-        name: payload.payload.name,
-        Status: payload.payload.Status
+    console.log("before add data in saga", payload);
+    let status = (payload.payload.status === "true")
+    console.log("status", status);
+    yield axios.post(categoryUrl, {
+        title: payload.payload.title,
+        status: status
     })
 
     alert('Added a new categroy')
 
-    let data = yield axios.get(booksUrl)
-    // console.log("after add data in saga", data);
+    let data = yield axios.get(categoryUrl)
+    console.log("after add data in saga", data);
     yield put({type: RECEIVE_ADD_DATA, payload:{data}})
 }
 
 function* editData(payload){
     console.log("before edit data in saga", payload);
     let id = payload.payload.id
-    yield axios.patch(`http://192.100.100.34:3000/books/${id}`, {
-        name: payload.payload.name,
-        Status: payload.payload.Status
+    let status = (payload.payload.Status === "true")
+    console.log("status", status);
+    yield axios.patch(`http://192.100.100.111:3001/book-categories/${id}`, {
+        title: payload.payload.name,
+        status: status
     })
 
     alert('categroy update successfully')
 
-    let data = yield axios.get(booksUrl)
+    let data = yield axios.get(categoryUrl)
     console.log("after edit data in saga", data);
     yield put({type: RECEIVE_EDIT_DATA, payload:{data}})
 }

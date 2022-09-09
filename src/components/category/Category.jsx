@@ -10,16 +10,16 @@ import { Request_Add_Data, Request_Delete, Request_Fetchdata } from '../../redux
 export const Category = () => {
     const [editData, setEditData] = useState();
     const [close, setClose] = useState(false);
-    let [key, setKey] = useState("");
+    // let [status, setStatus] = useState();
     const [text, setText] = useState({
-        name: "",
-        Status: ""
+        title: "", 
+        status: ""
     });
 
     const { catgData } = useSelector((state)=> ({
         catgData: state.categoryState.data
     }))
-    // console.log("saga data in component", catgData);
+    console.log("saga data in component", catgData);
 
     const dispatch = useDispatch();
     const handleChange = (e) => {
@@ -42,22 +42,14 @@ export const Category = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(Request_Add_Data(text.name, text.Status))
+        dispatch(Request_Add_Data(text.title, text.status))
     }
 
     const filterData = (e) => {
-        // if(key.length>e.target.value.length){
-        //     dispatch(Request_Fetchdata());
-        // }
-        // setKey(e.target.value);
-        // key = key.toUpperCase();
-        
-        // console.log("key", key);
-        // catgData.filter(
-        //     (user) =>
-        //       user.name.toUpperCase().indexOf(key) > -1 ||
-        //       user.Status.toUpperCase().indexOf(key) > -1
-        // )
+         e.preventDefault();
+         let query = e.target.vaule;
+
+         
       };
 
     useEffect(() => {
@@ -73,27 +65,27 @@ export const Category = () => {
                 e.preventDefault();
                 setText({
                     name:"",
-                    Status:""
+                    status:""
                 })
             }}>
                 <input
                     onChange={handleChange}
-                    name="name"
+                    name="title"
                     type='text'
                     value={text.name}
                     placeholder='Enter category name...'
                 /><br />
-                <select className="category-status" name="Status" onChange={handleChange}>
-                    <option className="book-select-hidden">Select</option>
-                    <option value="Active">Active</option>
-                    <option value="In Active">In Active</option>
+                <select className="category-status" name="status" onChange={handleChange}>
+                    <option className="addbook-select-hidden">Select</option>
+                    <option value={true}>Active</option>
+                    <option value={false}>In Active</option>
                 </select><br />
 
                 <input onClick={handleSubmit} id='submit-btn' type='submit' />
             </form>
 
             <form className='user-form'>
-                <input value={key} onChange={filterData} type='text' placeholder='Search by name...'/>
+                <input onChange={filterData} type='text' placeholder='Search by name...'/>
             </form>
         </div>
 
@@ -111,13 +103,13 @@ export const Category = () => {
                     {catgData.map((item, i) => (
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            <td>{item.name}</td>
-                            <td>{item.Status}</td>
+                            <td>{item.title}</td>
+                            <td className={item.status?"status-green":"status red"}>{item.status? "Active" : "In Active"}</td>
                             <td>
                                 <img
                                     alt=''
                                     src={remove}
-                                    onClick={(e) => handleDelete(item._id)}
+                                    onClick={(e) => handleDelete(item.id)}
                                     className='category-list-icon' />
                             </td>
                             <td>

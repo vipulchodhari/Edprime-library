@@ -1,4 +1,4 @@
-import { REQUEST_CLASS_DATA, REQUEST_EDITBOOK_DATA, REQUEST_GENRE_DATA, REQUEST_SUBJECT_DATA } from "./actionTypes";
+import {REQUEST_EDITBOOK_DATA, REQUEST_GENRE_DATA, REQUEST_SUBJECT_DATA } from "./actionTypes";
 
 export const Request_Subject_Data = () => {
     console.log('action called');

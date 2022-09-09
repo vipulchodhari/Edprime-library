@@ -23,10 +23,10 @@ export const AddBooks = () => {
     const [classs, setClasss] = useState([]);
     const [subject, setSubject] = useState([]);
 
-    // console.log('author seclect,', author);
-    // console.log('genre seclect,', genre);
-    // console.log('classs seclect,', classs);
-    // console.log('subject seclect,', subject);
+    console.log('author seclect,', author);
+    console.log('genre seclect,', genre);
+    console.log('classs seclect,', classs);
+    console.log('subject seclect,', subject);
 
     const [text, setText] = useState({
         book_title: "",
@@ -134,8 +134,10 @@ export const AddBooks = () => {
                     }}
                     onSearch={function noRefCheck() { }}
                     onSelect={(selectedList,selectedItem) => {
-                        let autId = [...author, selectedItem.id]
+                        let autId = [...author, selectedItem._id]
                         setAuthor(autId);
+
+                        // console.log("author data", selectedItem);
                     }}
                     placeholder={"Select author"}
                 />
@@ -201,7 +203,7 @@ export const AddBooks = () => {
                     placeholder={"Select Subject"}
                 />
                 <label className="addbook-lable"><u>ISBN Number</u> :--</label>
-                <input onChange={handleChange} name="isbn" type='text' placeholder="Enter isbn..." />
+                <input onChange={handleChange} name="isbn" style={{letterSpacing:"2px"}} type='text' placeholder="Enter isbn..." />
                 <label className="addbook-lable" style={{ marginTop: "30px"}}><u>Upload book Image</u> :--</label>
                 {/* <input onChange={handleChange} name="addbook_Images" type='text' placeholder="Enter book images..." /> */}
                 <img

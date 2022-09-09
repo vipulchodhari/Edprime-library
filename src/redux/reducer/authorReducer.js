@@ -1,4 +1,4 @@
-import { RECEIVE_ADD_AUTHOR, RECEIVE_AUTHOR_DATA, RECEIVE_DELETE_AUTHOR, RECEIVE_EDIT_AUTHOR } from "../action/actionTypes"
+import { RECEIVE_ADD_AUTHOR, RECEIVE_AUTHOR_DATA, RECEIVE_DELETE_AUTHOR, RECEIVE_EDIT_AUTHOR, RECEIVE_FILTER_AUTHOR } from "../action/actionTypes"
 
 const init_state = {
     data: []
@@ -19,12 +19,18 @@ export const authorReducer = (state = init_state, { type, payload }) => {
                 data: payload.data.data
             }
         case RECEIVE_DELETE_AUTHOR:
-            console.log("reducer DELETEauthor", payload);
+            // console.log("reducer DELETEauthor", payload);
             return {
                 ...state,
                 data: payload.data.data
             }
         case RECEIVE_EDIT_AUTHOR:
+            // console.log("reducer Edit data", payload);
+            return {
+                ...state,
+                data: payload.data.data
+            }
+        case RECEIVE_FILTER_AUTHOR:
             // console.log("reducer Edit data", payload);
             return {
                 ...state,
