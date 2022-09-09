@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
-import { booksUrl, categoryUrl } from '../../utils/common';
+import { categoryUrl } from '../../utils/common';
 import { RECEIVE_ADD_DATA, RECEIVE_DELETE, RECEIVE_EDIT_DATA, RECEIVE_FETCHDATA, REQUEST_ADD_DATA, REQUEST_DELETE, REQUEST_EDIT_DATA, REQUEST_FETCHDATA } from '../action/actionTypes';
 
 function* getData(){
