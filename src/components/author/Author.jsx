@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 export const Author = () => {
     const [editData, setEditData] = useState();
     const [close, setClose] = useState(false);
+    const [query, setQuery] = useState('')
     
     const [text, setText] = useState({
         title: "",
@@ -21,12 +22,15 @@ export const Author = () => {
         created_by: ""
     });
 
-    const { authorData } = useSelector((state) => ({
+    let { authorData } = useSelector((state) => ({
         authorData: state.authorState.data
     }))
     console.log("saga data in component", authorData);
-    // const [queryData, setQueryData] = useState(authorData);
-    // console.log("queryData", queryData);
+
+    authorData = authorData.filter((author) =>
+                    author.title.toLowerCase().includes(query) ||
+                    author.created_by.toLowerCase().includes(query)
+    )
 
     const dispatch = useDispatch();
     const handleChange = (e) => {
@@ -80,9 +84,10 @@ export const Author = () => {
 
     const filterData = (e) => {
         e.preventDefault()
-        let query = e.target.value;
+        // let query = e.target.value;
+        setQuery(e.target.value)
 
-        dispatch(Request_Filter_author(query))
+        // dispatch(Request_Filter_author(query))
     };
 
     useEffect(() => {
@@ -153,7 +158,7 @@ export const Author = () => {
                         <th>Edit</th>
                     </tr>
 
-                    {authorData.map((item, i) => (
+                    {authorData.length?authorData.map((item, i) => (
                         <tr key={i}>
                             <td>{i + 1}</td>
                             <td className='author-list-imgTag'>
@@ -184,7 +189,7 @@ export const Author = () => {
                                 />
                             </td>
                         </tr>
-                    ))}
+                    )): "No data Found"}
                 </tbody>
             </table>
 

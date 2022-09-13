@@ -1,17 +1,18 @@
 import axios from "axios";
-import Multiselect from "multiselect-react-dropdown"
+import Multiselect from "multiselect-react-dropdown";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { imgInputFilePicker } from "../../utils/common";
 import customerBorder from '../../assets/upload.jpg';
 import { getAuthorData, getCategoryData, getClassData, getGenreData, getLanguageData, getSubjectData } from "../../utils/getApi";
-import { useSelector } from "react-redux";
+const BookEditnew = () => {
+    const params = useParams();
+    const BookId  = params.id;
+    console.log("params", BookId);
 
-export const AddBooks = () => {
-    const { editBookData } = useSelector((state) => ({
-        editBookData: state.booksAddState.data
-    }))
-    console.log("saga data in component", editBookData.book_title);
+    const [editBookData, setEditBookData] = useState();
 
+    
     const [aunthorData, setAuthorData] = useState([]);
     const [genreData, setGenreData] = useState([]);
     const [classData, setClassData] = useState([]);
@@ -23,10 +24,18 @@ export const AddBooks = () => {
     const [classs, setClasss] = useState([]);
     const [subject, setSubject] = useState([]);
 
-    console.log('author seclect,', author);
-    console.log('genre seclect,', genre);
-    console.log('classs seclect,', classs);
-    console.log('subject seclect,', subject);
+    // console.log('author seclect,', author);
+    // console.log('genre seclect,', genre);
+    // console.log('classs seclect,', classs);
+    // console.log('subject seclect,', subject);
+    
+    const mydata = () => {
+        axios.get(`http://192.100.100.111:3000/books/${BookId}`)
+        .then((res) => {
+         setEditBookData(res.data)
+        });
+    }
+    console.log("edit params", editBookData);
 
     const [text, setText] = useState({
         book_title: "",
@@ -66,6 +75,7 @@ export const AddBooks = () => {
     }
 
     useEffect(() => {
+        mydata()
         getAuthorData().then((res) => setAuthorData(res))
         getGenreData().then((res) => setGenreData(res))
         getClassData().then((res) => setClassData(res))
@@ -119,7 +129,8 @@ export const AddBooks = () => {
         }
     }
 
-    return <div className="addbook-controller">
+    return(
+        <div className="addbook-controller">
         <h1>Book Create</h1>
         <div className="addbook-cont">
             <form className='addbook-form' onSubmit={(e) => e.preventDefault()}>
@@ -230,4 +241,6 @@ export const AddBooks = () => {
             </form>
         </div>
     </div>
-}   
+    )
+}
+export default BookEditnew;

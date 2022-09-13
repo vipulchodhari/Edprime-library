@@ -4,6 +4,7 @@ import { rootReducer } from "./reducer";
 import authorSaga from "./saga/authorSaga";
 import booksAddSaga from "./saga/booksAddSaga";
 import categorySaga from "./saga/categorySaga";
+import memberSaga from "./saga/memberSaga";
 
 const sagaMiddleWare = createSagaMiddleWare();
 
@@ -17,3 +18,4 @@ export const store = configureStore(
 sagaMiddleWare.run(categorySaga)
 sagaMiddleWare.run(authorSaga)
 sagaMiddleWare.run(booksAddSaga)
+sagaMiddleWare.run(memberSaga)

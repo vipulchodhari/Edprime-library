@@ -1,16 +1,20 @@
-.addbook-cont, .books-add-btn{
+.addbook-cont,
+.books-add-btn {
     border: 1px solid black;
     padding: 20px;
     width: 64%;
     margin: auto;
 }
-.addbook-form{
+
+.addbook-form {
     margin-top: 20px;
     display: grid;
     grid-template-columns: 30% 65%;
     gap: 25px;
 }
-.addbook-form > input, .addbook-status{
+
+.addbook-form>input,
+.addbook-status {
     /* width: 35%; */
     padding: 12px;
     margin-bottom: 15px;
@@ -18,15 +22,18 @@
     border: none;
     border-radius: 5px;
 }
-.addbook-select-hidden{
+
+.addbook-select-hidden {
     display: none;
 }
-.addbook-status > option{
+
+.addbook-status>option {
     font-size: 15px;
 }
-#addbookCont-submit-btn{
+
+#addbookCont-submit-btn {
     width: 50%;
-    background-color: rgb(25,118,209);
+    background-color: rgb(25, 118, 209);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -34,15 +41,17 @@
     font-weight: 600;
     cursor: pointer;
 }
-.addbook-lable{
+
+.addbook-lable {
     font-size: 18px;
     font-weight: 600;
     text-align: left;
     margin-top: 5px;
 }
-.add-books-btn{
+
+.add-books-btn {
     width: 30%;
-    background-color: rgb(25,118,209);
+    background-color: rgb(25, 118, 209);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -51,11 +60,56 @@
     padding: 13px;
     cursor: pointer;
 }
+
 .books-list-table>tbody>tr>td:nth-child(5),
-.books-list-table>tbody>tr>td:nth-child(6){
+.books-list-table>tbody>tr>td:nth-child(6) {
     width: 10%;
     padding: 5px 15px;
 }
-.books-list-table>tbody>tr>th:nth-child(1){
+
+.books-list-table>tbody>tr>th:nth-child(1) {
     width: 10%;
+}
+
+.editbook-cont {
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    padding-top: 25px;
+    /* position: fixed; */
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    transform: translateY(-30%);
+    background-color: rgb(240, 237, 237);
+    border-radius: 5px;
+    /* border: 1px solid black; */
+    box-shadow: 0 8px 10px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 10%), 0 -8px 12px 0 rgb(0 0 0 / 5%), 0 -2px 3px -2px rgb(0 0 0 / 1%);
+}
+.issue-BookList-cont{
+    margin-top: 30px;
+}
+.issue-book-cont{
+    border: 1px solid black;
+    padding: 20px;
+    width: 71%;
+    margin: auto;
+    margin-left: 18%;
+}
+.issue-book-search{
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+.issue-book-search > form, .issue-book-member{
+    width: 45%;
+}
+.issue-book-search>form>input{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: rgb(236, 241, 247);
+    border: none;
+    border-radius: 5px;
 }

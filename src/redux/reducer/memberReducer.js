@@ -1,18 +1,18 @@
-import { RECEIVE_BOOK_DATA, RECEIVE_EDITBOOK_DATA } from "../action/actionTypes"
+import { RECEIVE_MEMBER_DATA, RECEIVE_SEARCH_MEMBER } from "../action/actionTypes";
 
 const init_state = {
     data: []
 }
 
-export const bookAddReducer = (state = init_state, { type, payload }) => {
+export const memberReducer = (state = init_state, { type, payload }) => {
     switch (type) {
-        case RECEIVE_BOOK_DATA:
+        case RECEIVE_MEMBER_DATA:
             // console.log("reducer data", payload.data.data);
             return {
                 ...state,
                 data: payload.data.data
             }
-        case RECEIVE_EDITBOOK_DATA:
+        case RECEIVE_SEARCH_MEMBER:
             console.log("reducer data", payload.data.data);
             return {
                 ...state,

@@ -47,36 +47,36 @@ export const Navbar = () => {
                 <Toolbar />
                 <Divider />
                 <List>
-                    <ListItem disablePadding>
-                        <Link to='/' className='link-decoration'>
+                    <Link to='/' className='link-decoration'>
+                        <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <DashboardIcon className='navbar-icon d-icon1' />
                                 </ListItemIcon>
                                 <ListItemText className='navbar-icon-text' primary='Dashboard' />
                             </ListItemButton>
-                        </Link>
-                    </ListItem>
-                    <ListItem disablePadding>
-                        <Link to='/books' className='link-decoration'>
+                        </ListItem>
+                    </Link>
+                    <Link to='/books' className='link-decoration'>
+                        <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <MenuBookIcon className='navbar-icon d-icon2' />
                                 </ListItemIcon>
                                 <ListItemText className='navbar-icon-text' primary='Books' />
                             </ListItemButton>
-                        </Link>
-                    </ListItem>
-                    <ListItem disablePadding>
-                        <Link to="/author" className='link-decoration'>
+                        </ListItem>
+                    </Link>
+                    <Link to="/author" className='link-decoration'>
+                        <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <PersonIcon className='navbar-icon d-icon3' />
                                 </ListItemIcon>
                                 <ListItemText className='navbar-icon-text' primary='Author' />
                             </ListItemButton>
-                        </Link>
-                    </ListItem>
+                        </ListItem>
+                    </Link>
                     <ListItem disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
@@ -85,24 +85,26 @@ export const Navbar = () => {
                             <ListItemText className='navbar-icon-text' primary='Users' />
                         </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding>
-                        <Link to="/category" className='link-decoration'>
+                    <Link to="/category" className='link-decoration'>
+                        <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <TrackChangesIcon className='navbar-icon d-icon4' />
                                 </ListItemIcon>
                                 <ListItemText className='navbar-icon-text' primary='Category' />
                             </ListItemButton>
-                        </Link>
-                    </ListItem>
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <QuizIcon className='navbar-icon d-icon5' />
-                            </ListItemIcon>
-                            <ListItemText className='navbar-icon-text' primary='Issue Books' />
-                        </ListItemButton>
-                    </ListItem>
+                        </ListItem>
+                    </Link>
+                    <Link to='/issueBook' className='link-decoration'>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <QuizIcon className='navbar-icon d-icon5' />
+                                </ListItemIcon>
+                                <ListItemText className='navbar-icon-text' primary='Issue Books' />
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
                 </List>
             </Drawer>
 

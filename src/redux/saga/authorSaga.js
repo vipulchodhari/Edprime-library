@@ -33,7 +33,7 @@ function* deleteAuthorData(payload){
     // console.log("id in saga", payload);
     let id = payload.id;
     // yield axios.delete(`http://192.100.100.52:5000/authors/${id}`)
-    yield axios.delete(`http://192.100.100.52:3002/authors/${id}`)
+    yield axios.delete(`http://192.100.100.111:3000/authors/${id}`)
 
     alert('Author is deleted')
 
@@ -45,7 +45,7 @@ function* deleteAuthorData(payload){
 function* editAuthorData(payload){
     // console.log("before edit data in saga", payload);
     let id = payload.payload.id
-    yield axios.patch(`http://192.100.100.52:3002/authors/${id}`, {
+    yield axios.patch(`http://192.100.100.111:3000/authors/${id}`, {
         title: payload.payload.name,
         created_by: payload.payload.Cname
     })
@@ -60,7 +60,7 @@ function* editAuthorData(payload){
 function* filterAuthorData(payload){
     // console.log("before edit data in saga", payload);
     let query = payload.payload.query
-    let data = yield axios.get(`http://192.100.100.52:3002/authors?q=${query}`)
+    let data = yield axios.get(`http://192.100.100.111:3000/authors?q=${query}`)
 
     // console.log("after edit data in saga", data);
 

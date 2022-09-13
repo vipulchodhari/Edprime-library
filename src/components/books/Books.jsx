@@ -10,23 +10,24 @@ import { useDispatch } from 'react-redux';
 import { Request_BookEdit_Data } from '../../redux/action/bookAddAction';
 
 export const Books = () => {
-    const [editData, setEditData] = useState();
+    const [editBookData, setEditBookData] = useState();
     const [close, setClose] = useState(false);
-    const [booksList, setBookList] = useState([]);
+    const [bookList, setBookList] = useState([]);
+    console.log("booklist", bookList);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleDelete = (id) => {
-        axios.delete(`http://192.100.100.52:5000/books/${id}`)
-          .then((res) => console.log(res))
-        getBooksData().then((res) => setBookList(res))
+        // axios.delete(`http://192.100.100.52:5000/books/${id}`)
+        //   .then((res) => console.log(res))
+        //   .then((res) => setBookList(res))
     }
 
     const handleEdit = (item) => {
-        setEditData(item)
-        setClose(true);
+        // setEditBookData(item)
+        // setClose(true);
         
-        navigate('/edit-book')
+        // navigate('/edit-book')
         console.log("edit", item);
 
         // dispatch(Request_BookEdit_Data(item))
@@ -44,7 +45,7 @@ export const Books = () => {
     return <div className="Books-container">
         <h1>Book List</h1>
         <div className="author-cont">
-            <Link to='/add-books'>
+            <Link to='/add-books' >
                 <button className="add-books-btn">Add Book</button>
             </Link>
         </div>
@@ -59,7 +60,7 @@ export const Books = () => {
                         <th>Remove</th>
                         <th>Edit</th>
                     </tr>
-                    {booksList.map((item, i) => {
+                    {bookList.map((item, i) => {
                         return <tr key={i}>
                             <td>{i+1}</td>
                         <td className='author-list-imgTag'>
@@ -80,12 +81,12 @@ export const Books = () => {
                             />
                         </td>
                         <td>
-                            <img
+                            <Link to={`/edit-book/${item._id}`}><img
                                 alt='Edit'
                                 className='category-list-icon'
-                                onClick={(e) => handleEdit(item)}
+                                // onClick={(e) => handleEdit(item)}
                                 src={edit}
-                            />
+                            /></Link>
                         </td>
                     </tr>
                     })}
@@ -93,7 +94,7 @@ export const Books = () => {
                 </tbody>
             </table>
 
-            {close ? <BookEdit setClose={setClose} editData={editData} /> : ""}
+            {/* {close ? <BookEdit setClose={setClose} editBookData={editBookData} /> : ""} */}
             {/* <BookEdit editData={editData} /> */}
         </div>
     </div>

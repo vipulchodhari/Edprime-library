@@ -9,7 +9,8 @@
     right: 0;
     text-align: center;
     transform: translateY(-30%);
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
+    background-color: rgb(240, 237, 237);
     border-radius: 5px;
     border: 1px solid black;
   }
