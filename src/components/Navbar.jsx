@@ -77,14 +77,16 @@ export const Navbar = () => {
                             </ListItemButton>
                         </ListItem>
                     </Link>
+                    <Link to="/member" className='link-decoration'>
                     <ListItem disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
                                 <PersonIcon className='navbar-icon d-icon3' />
                             </ListItemIcon>
-                            <ListItemText className='navbar-icon-text' primary='Users' />
+                            <ListItemText className='navbar-icon-text' primary='Member' />
                         </ListItemButton>
                     </ListItem>
+                    </Link>
                     <Link to="/category" className='link-decoration'>
                         <ListItem disablePadding>
                             <ListItemButton>

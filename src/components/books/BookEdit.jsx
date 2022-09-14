@@ -21,7 +21,7 @@ export const BookEdit = () => {
             //  console.log(editBookData)
         });
     }
-    console.log("edit books params", editBookData.author.title);   
+    console.log("edit books params", editBookData);   
                       
     const [authorData, setAuthorData] = useState();
     const [genreData, setGenreData] = useState();
@@ -29,18 +29,18 @@ export const BookEdit = () => {
     const [subjectData, setSubjectData] = useState();
     const [languageData, setLanguageData] = useState();
     const [categoryData, setCategoryData] = useState();
-    const [author, setAuthor] = useState();
+    const [author, setAuthor] = useState([editBookData?.author?.title ?? 'dumyAuthor']);
     const [genre, setGenre] = useState();
     const [classs, setClasss] = useState();
     const [subject, setSubject] = useState();
 
-    // console.log('author seclect,', author);
+    console.log('author seclect,', author);
     // console.log('genre seclect,', genre);
     // console.log('classs seclect,', classs);
     // console.log('subject seclect,', subject);
 
     const [text, setText] = useState({
-        book_title: "",
+        book_title: editBookData?.book_title ?? 'dummy',
         category_id: "",
         language_id: "",
         isbn: "", 
@@ -159,20 +159,19 @@ export const BookEdit = () => {
                     placeholder={"Select author"}
                 />
                 <label className="addbook-lable"><u>Book Title</u> :--</label>
-                <input onChange={handleChange} name='book_title' type='text' placeholder="Enter book title..." />
+                <input value={text.book_title} onChange={handleChange} name='book_title' type='text' placeholder="Enter book title..." />
                 {/* <input value={Ename} onChange={(e) => setEname(e.target.value)} name='book_title' type='text' placeholder="Enter book title..." /> */}
                 <label className="addbook-lable"><u>Category Type</u> :--</label>
-                <select className="addbook-status" name="category_id" onChange={handleChange}>
-                    <option className="addbook-select-hidden">{text.category_id}</option>
-                    {/* {categoryData.map((el, i) => {
-                        return <option value={el.id} key={i}>{el.title}</option>
-                    })} */}
+                <select value={text?.category_id ?? 'dummy'} className="addbook-status" name="category_id" onChange={handleChange}>
+                    {categoryData?.map((el, i) => {
+                        return <option value={el?.id ?? "dummy"} key={i}>{el?.title ?? 'dummy'}</option>
+                    })}
                 </select>
                 <label className="addbook-lable"><u>Genre name</u> :--</label>
                 <Multiselect 
                     options={genreData}
                     displayValue="title"   
-                    selectedValues={genre}
+                    // selectedValues={genre}
                     onKeyPressFn={function noRefCheck() { }}
                     onRemove={(selectedList,selectedItem) => {
                         removeGenre(selectedList,selectedItem);    
@@ -185,17 +184,16 @@ export const BookEdit = () => {
                     placeholder={"Select Genre"}
                 />
                 <label className="addbook-lable"><u>Book Language</u> :--</label>
-                <select className="addbook-status" name="language_id" onChange={handleChange}>
-                    <option className="addbook-select-hidden">{text.language_id}</option>
-                    {/* {languageData.map((el, i) => {
-                        return <option value={el.id} key={i}>{el.title}</option>
-                    })} */}
+                <select value={text?.language_id ?? 'dummy'} className="addbook-status" name="language_id" onChange={handleChange}>
+                    {languageData?.map((el, i) => {
+                        return <option value={el?.id ?? 'dummy'} key={i}>{el?.title ?? 'dummy'}</option>
+                    })}
                 </select>
                 <label className="addbook-lable"><u>Class name</u> :--</label>
                 <Multiselect 
                     options={classData}
                     displayValue="title"   
-                    selectedValues={classs}
+                    // selectedValues={classs}
                     onKeyPressFn={function noRefCheck() { }}
                     onRemove={(selectedList,selectedItem) => {
                         removeClass(selectedList,selectedItem);    
@@ -211,7 +209,7 @@ export const BookEdit = () => {
                 <Multiselect 
                     options={subjectData}
                     displayValue="title"   
-                    selectedValues={subject}
+                    // selectedValues={subject}
                     onKeyPressFn={function noRefCheck() { }}
                     onRemove={(selectedList,selectedItem) => {
                         removeSubject(selectedList,selectedItem);    
@@ -239,8 +237,7 @@ export const BookEdit = () => {
                     title=""
                 />
                 <label className="addbook-lable"><u>Book status :--</u></label>
-                <select className="addbook-status" name="status" onChange={handleChange}>
-                    <option value={text.status?"Active":"In Active"} className="addbook-select-hidden">{text.status?"Active":"In Active"}</option>
+                <select value={text.status?"Active":"In Active"} className="addbook-status" name="status" onChange={handleChange}>
                     <option value='true'>Active</option>
                     <option value='false'>In Active</option>
                 </select>

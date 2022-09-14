@@ -15,18 +15,18 @@ export const Request_Delete = (id) => {
     }
 }
 
-export const Request_Add_Data = (title, status) => {
-    // console.log("add action called", title, status);
+export const Request_Add_Data = (image, title, created_by, modified_by, status) => {
+    console.log("add action called", image, title, created_by, modified_by, status);
     return {
         type: REQUEST_ADD_DATA,
-        payload: {title, status}
+        payload: {image, title, created_by, modified_by, status}
     }
 }
 
-export const Request_Edit_Data = (name, Status, id) => {
-    // console.log("edit action called", name, Status, id);
+export const Request_Edit_Data = (image, title, created_by, modified_by, status, id) => {
+    console.log("edit action called", image, title, created_by, modified_by, status, id);
     return {
         type: REQUEST_EDIT_DATA,
-        payload: {name, Status, id}
+        payload: {image, title, created_by, modified_by, status, id}
     }
 }

@@ -27,7 +27,7 @@ export const AuthorEdit = ({ setClose, editData, }) => {
         dispatch(Request_Edit_author(Ename, EcreateBy, editData._id))
         setClose(false)
     }
-    return <div className='categoryedit-cont'>
+    return <div className='categoryedit-cont authoredit-cont'>
         <p className="authoredit-close-btn" onClick={() => {setClose(false)}}>x</p>
         <form onSubmit={handleSubmit} className='categoryedit-form'>
             {/* <img
@@ -43,14 +43,14 @@ export const AuthorEdit = ({ setClose, editData, }) => {
             /><br /> */}
             <input
                 value={Ename}
-                className='categoryedit-input'
+                className='categoryedit-input authoredit-input'
                 onChange={(e) => setEName(e.target.value)}
-            />
+            /><br/>
             <input
                 value={EcreateBy}
-                className='categoryedit-input'
+                className='categoryedit-input authoredit-input' 
                 onChange={(e) => setEcreateBy(e.target.value)}
-            />
+            /><br/>
 
             {/* <button className='submit' onClick={(e) => handleSubmit(data._id)}> OK</button> */}
             <input className='submit' type='submit' />

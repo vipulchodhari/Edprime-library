@@ -5,21 +5,31 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CategoryEdit } from './CategoryEdit';
+import SearchIcon from '@mui/icons-material/Search';
 import { Request_Add_Data, Request_Delete, Request_Fetchdata } from '../../redux/action/categoryAction';
 
 export const Category = () => {
     const [editData, setEditData] = useState();
     const [close, setClose] = useState(false);
-    // let [status, setStatus] = useState();
+    const [query, setQuery] = useState("");
     const [text, setText] = useState({
-        title: "", 
+        category_image: "",
+        title: "",
+        created_by: "",
+        modified_by: "",
         status: ""
     });
 
-    const { catgData } = useSelector((state)=> ({
+    let { catgData } = useSelector((state) => ({
         catgData: state.categoryState.data
     }))
     console.log("saga data in component", catgData);
+
+    catgData = catgData.filter((catg) =>
+        catg.title.toLowerCase().includes(query) ||
+        catg.created_by.toLowerCase().includes(query) ||
+        catg.modified_by.toLowerCase().includes(query)
+    )
 
     const dispatch = useDispatch();
     const handleChange = (e) => {
@@ -42,15 +52,16 @@ export const Category = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(Request_Add_Data(text.title, text.status))
+        dispatch(Request_Add_Data(text.category_image, text.title, text.created_by, text.modified_by, text.status))
     }
 
     const filterData = (e) => {
-         e.preventDefault();
-         let query = e.target.vaule;
+        e.preventDefault();
+        // let query = e.target.vaule;
 
-         
-      };
+        setQuery(e.target.value);
+
+    };
 
     useEffect(() => {
         dispatch(Request_Fetchdata());
@@ -64,16 +75,40 @@ export const Category = () => {
             <form className='user-form' onSubmit={(e) => {
                 e.preventDefault();
                 setText({
-                    name:"",
-                    status:""
+                    category_image: "",
+                    title: "",
+                    created_by: "",
+                    modified_by: "",
+                    status: ""
                 })
             }}>
                 <input
                     onChange={handleChange}
+                    name="category_image"
+                    type='text'
+                    value={text.category_image}
+                    placeholder='Enter category image...'
+                />&nbsp;&nbsp;&nbsp;
+                <input
+                    onChange={handleChange}
                     name="title"
                     type='text'
-                    value={text.name}
+                    value={text.title}
                     placeholder='Enter category name...'
+                />&nbsp;&nbsp;&nbsp;
+                <input
+                    onChange={handleChange}
+                    name="created_by"
+                    type='text'
+                    value={text.created_by}
+                    placeholder='Created By...'
+                />&nbsp;&nbsp;&nbsp;
+                <input
+                    onChange={handleChange}
+                    name="modified_by"
+                    type='text'
+                    value={text.modified_by}
+                    placeholder='Modified By...'
                 /><br />
                 <select className="category-status" name="status" onChange={handleChange}>
                     <option className="addbook-select-hidden">Select</option>
@@ -84,8 +119,9 @@ export const Category = () => {
                 <input onClick={handleSubmit} id='submit-btn' type='submit' />
             </form>
 
-            <form className='user-form'>
-                <input onChange={filterData} type='text' placeholder='Search by name...'/>
+            <form className='user-form author-search'>
+                <SearchIcon className='author-searchIcon' />
+                <input onChange={filterData} type='text' placeholder='Search by name, created-by, modified-by...' />&nbsp;&nbsp;
             </form>
         </div>
 
@@ -94,22 +130,28 @@ export const Category = () => {
                 <tbody>
                     <tr>
                         <th>S.No</th>
+                        <th>Image</th>
                         <th>Name</th>
+                        <th>Created-By</th>
+                        <th>Modified-By</th>
                         <th>Status</th>
                         <th>Remove</th>
                         <th>Edit</th>
                     </tr>
-              
-                    {catgData.map((item, i) => (
+
+                    {catgData?catgData.map((item, i) => (
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            <td>{item.title}</td>
-                            <td className={item.status?"status-green":"status red"}>{item.status? "Active" : "In Active"}</td>
+                            <td>{item?.category_image ?? ''}</td>
+                            <td>{item?.title ?? ''}</td>
+                            <td>{item?.created_by ?? ''}</td>
+                            <td>{item?.modified_by ?? ''}</td>
+                            <td className={item.status ? "status-green" : "status red"}>{item.status ? "Active" : "In Active"}</td>
                             <td>
                                 <img
                                     alt=''
                                     src={remove}
-                                    onClick={(e) => handleDelete(item.id)}
+                                    onClick={(e) => handleDelete(item._id)}
                                     className='category-list-icon' />
                             </td>
                             <td>
@@ -120,12 +162,11 @@ export const Category = () => {
                                     src={edit} />
                             </td>
                         </tr>
-                    )
-                    )}
+                    )) : <h1>No Data Found</h1>}
                 </tbody>
             </table>
 
-            {close ? <CategoryEdit setClose={setClose} editData={editData}/> : ""}
+            {close ? <CategoryEdit setClose={setClose} editData={editData} /> : ""}
         </div>
     </div>
 }

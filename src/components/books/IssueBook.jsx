@@ -19,10 +19,10 @@ export const IssueBook = () => {
     console.log("bookList in component", bookData);
     console.log("memberList in component", memberData);
 
-    memberData = memberData.filter((member) =>
-                    member.name.toLowerCase().includes(query) ||
-                    member.created_by.toLowerCase().includes(query)
-    )
+    // memberData = memberData.filter((member) =>
+    //                 member.name.toLowerCase().includes(query) ||
+    //                 member.created_by.toLowerCase().includes(query)
+    // )
     bookData = bookData.filter((book) =>
                     book.book_title.toLowerCase().includes(query) ||
                     book.author.title.toLowerCase().includes(query) ||
@@ -32,7 +32,6 @@ export const IssueBook = () => {
     )
 
     const dispatch = useDispatch();
-
     const searchBook = (e) => {
         e.preventDefault()
         setShow(true)
@@ -45,8 +44,10 @@ export const IssueBook = () => {
         e.preventDefault()
         setShow(false)
 
-        setQuery(e.target.value)
-        // dispatch(Request_Search_Member(query))
+        // setQuery(e.target.value)
+
+        let q = e.target.value;
+        dispatch(Request_Search_Member(q))
     }
 
     useEffect(() => {
@@ -82,20 +83,21 @@ export const IssueBook = () => {
                             <th>Language</th>
                             <th>Select</th>
                         </tr>
-                        {bookData.map((el, i) => {
-                            return <tr key={i}>
+                        {bookData?bookData?.map((el, i) => (
+                            <tr key={i}>
                                 <td>{i + 1}</td>
                                 <td>Book image</td>
-                                <td>{el.book_title}</td>
-                                <td>{el.author.title}</td>
-                                <td>{el.bookCategory.title}</td>
-                                <td>{el.edClass.title}</td>
-                                <td>{el.language.title}</td>
-                                <td><button style={{ cursor: "pointer", color: "green", fontWeight: '600' }} onClick={() =>
-                                    setBook(el.book_title)
+                                <td>{el?.book_title ?? ''}</td>
+                                <td>{el?.author?.title  ?? ''}</td>
+                                <td>{el?.bookCategory?.title  ?? ''}</td>
+                                <td>{el?.edClass?.title  ?? ''}</td>
+                                <td>{el?.language?.title  ?? ''}</td>
+                                <td>
+                                    <button style={{ cursor: "pointer", color: "green", fontWeight: '600' }} onClick={() =>
+                                    setBook(el?.book_title  ?? '')
                                 }><u>Select</u></button></td>
                             </tr>
-                        })}
+                        )) : <h1>No Data Found</h1>}
                     </tbody>
                 </table> :
                     <table className='category-list-table'>
@@ -108,18 +110,18 @@ export const IssueBook = () => {
                                 <th>SSO ID</th>
                                 <th>Select</th>
                             </tr>
-                            {memberData.map((el, i) => {
+                            {memberData.length? memberData.map((el, i) => {
                                 return <tr key={i}>
                                     <td>{i + 1}</td>
                                     <td>Member image</td>
-                                    <td>{el.name}</td>
-                                    <td>{el.created_by}</td>
-                                    <td>{el.sso_id}</td>
+                                    <td>{el?.name ?? ''}</td>
+                                    <td>{el?.created_by ?? ''}</td>
+                                    <td>{el?.sso_id ?? ''}</td>
                                     <td><button style={{ cursor: "pointer", color: "green", fontWeight: '600' }} onClick={() => 
-                                        setMember(el.name)
+                                        setMember(el?.name ?? '')
                                     }><u>Select</u></button></td>
                                 </tr>
-                            })}
+                            }) : <h1 style={{textAlign:"center"}}>No Data Found</h1>}
                         </tbody>
                     </table>}
             </div>

@@ -13,7 +13,7 @@ function* getMemberData(){
 function* searchMember(payload){
     console.log("before in saga", payload);
     let query = payload.query
-    let data = yield axios.get(`http://192.100.100.52:100/members?q=${query}`);
+    let data = yield axios.get(`http://192.100.100.52:3002/members?q=${query}`);
     console.log("after member data in saga", data);
 
     yield put({type: RECEIVE_SEARCH_MEMBER, payload:{data}})
@@ -22,8 +22,6 @@ function* searchMember(payload){
 function* memberSaga(){
     yield takeEvery(REQUEST_MEMBER_DATA, getMemberData)
     yield takeEvery(REQUEST_SEARCH_MEMBER, searchMember)
-    // yield takeEvery(REQUEST_ADD_DATA, addData)
-    // yield takeEvery(REQUEST_EDIT_DATA, editData)
 
 }
 

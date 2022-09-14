@@ -16,45 +16,57 @@ function* getautorData(){
 
 function* addAuthorData(payload){
     // console.log("before add data in saga", payload);
-    yield axios.post(authorUrl, {
-        title: payload.payload.name,
-        author_image: payload.payload.img,
-        created_by: payload.payload.Cname
-    })
 
-    alert('Added a new author')
-
-    let data = yield axios.get(authorUrl)
-    // console.log("after add data in saga", data);
-    yield put({type: RECEIVE_ADD_AUTHOR, payload:{data}})
+    try{
+        yield axios.post(authorUrl, {
+            title: payload.payload.name,
+            author_image: payload.payload.img,
+            created_by: payload.payload.Cname
+        })
+    
+        alert('Added a new author')
+    
+        let data = yield axios.get(authorUrl)
+        // console.log("after add data in saga", data);
+        yield put({type: RECEIVE_ADD_AUTHOR, payload:{data}})
+    }catch(err){
+        console.log(err.response.data.error)
+    }
 }
 
 function* deleteAuthorData(payload){
     // console.log("id in saga", payload);
     let id = payload.id;
-    // yield axios.delete(`http://192.100.100.52:5000/authors/${id}`)
-    yield axios.delete(`http://192.100.100.111:3000/authors/${id}`)
-
-    alert('Author is deleted')
-
-    let data = yield axios.get(authorUrl)
-    // console.log("delete data in saga", data);
-    yield put({type: RECEIVE_DELETE_AUTHOR, payload:{data}})
+    try{
+        yield axios.delete(`http://192.100.100.111:3000/authors/${id}`)
+    
+        alert('Author is deleted')
+    
+        let data = yield axios.get(authorUrl)
+        // console.log("delete data in saga", data);
+        yield put({type: RECEIVE_DELETE_AUTHOR, payload:{data}})
+    }catch(err){
+        console.log(err.response.data.error)
+    }
 }
 
 function* editAuthorData(payload){
     // console.log("before edit data in saga", payload);
     let id = payload.payload.id
-    yield axios.patch(`http://192.100.100.111:3000/authors/${id}`, {
-        title: payload.payload.name,
-        created_by: payload.payload.Cname
-    })
-
-    alert('categroy update successfully')
-
-    let data = yield axios.get(authorUrl)
-    // console.log("after edit data in saga", data);
-    yield put({type: RECEIVE_EDIT_AUTHOR, payload:{data}})
+    try{
+        yield axios.patch(`http://192.100.100.111:3000/authors/${id}`, {
+            title: payload.payload.name,
+            created_by: payload.payload.Cname
+        })
+    
+        alert('Author update successfully')
+    
+        let data = yield axios.get(authorUrl)
+        // console.log("after edit data in saga", data);
+        yield put({type: RECEIVE_EDIT_AUTHOR, payload:{data}})
+    }catch(err){
+        console.log(err.response.data.error)
+    }
 }
 
 function* filterAuthorData(payload){

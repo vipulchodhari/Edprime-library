@@ -50,8 +50,8 @@
     color: rgb(63,74,74);
     font-weight: 600;
 }
-.category-list-table>tbody>tr>td:nth-child(4),
-.category-list-table>tbody>tr>td:nth-child(5){
+.category-list-table>tbody>tr>td:nth-child(7),
+.category-list-table>tbody>tr>td:nth-child(8){
     width: 10%;
     padding: 5px 15px;
 }

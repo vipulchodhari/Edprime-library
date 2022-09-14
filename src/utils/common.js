@@ -9,7 +9,7 @@ export const classUrl = `http://192.100.100.111:3000/ed-classes`;
 export const subjectUrl = 'http://192.100.100.111:3000/subjects';
 export const languageUrl = 'http://192.100.100.111:3000/languages';
 export const categoryUrl = 'http://192.100.100.111:3000/book-categories';
-export const memberUrl = 'http://192.100.100.52:100/members';
+export const memberUrl = 'http://192.100.100.52:3002/members';
 
 export async function imgInputFilePicker() {
     const blob = await fileOpen({
