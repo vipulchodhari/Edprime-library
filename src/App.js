@@ -10,6 +10,7 @@ import { Books } from './components/books/Books';
 import { IssueBook } from './components/books/IssueBook';
 import { BookEdit } from './components/books/BookEdit';
 import { Member } from './components/member/Member';
+import { BookDetails } from './components/books/bookDetails/BookDetails';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/books' element={<Books/>}></Route>
         <Route path='/add-books' element={<AddBooks/>}></Route>
         <Route path='/edit-book/:id' element={<BookEdit/>}></Route>
+        <Route path='/book-details' element={<BookDetails/>}></Route>
         <Route path='/category' element={<Category/>}></Route>
         <Route path='/author' element={<Author/>}></Route>
         <Route path='/author-details' element={<AuthorDetails/>}></Route>

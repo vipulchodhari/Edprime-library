@@ -70,7 +70,11 @@ export const Books = () => {
                                 alt=''
                             />
                         </td>
-                        <td>{item.book_title}</td>
+                        <td>
+                            <Link to='/book-details' className='link-decoration'>
+                                {item.book_title}
+                            </Link>
+                        </td>
                         <td>{item.created_by}</td>
                         <td>
                             <img

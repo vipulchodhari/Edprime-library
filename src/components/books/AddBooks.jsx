@@ -48,10 +48,10 @@ export const AddBooks = () => {
     }
 
     const handleSubmit = () => {
-        axios.post(`http://192.100.100.111:3000/books`, {
+        axios.post(`http://192.100.100.111:1000/books`, {
             book_title: text.book_title,
             category_id: text.category_id,
-            author_id: author,
+            authorId: author,
             genre_id: genre,
             language_id: text.language_id,
             class_id: classs,

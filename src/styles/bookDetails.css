@@ -1,0 +1,76 @@
+.book-details-container{
+    border: 1px solid black;
+    padding: 20px;
+    width: 78%;
+    margin: auto;
+    margin-left: 18%;
+    margin-top: 2%;
+}
+.book-details-main-tab{
+    color: rgb(63,74,74);
+}
+.book-details-tab{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
+}
+.book-details-grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: left;
+}
+.book-tab{
+    display: flex;
+    background-color: rgb(235, 238, 244);
+    margin-top: 20px;
+}
+.tabs {
+    padding: 15px;
+    text-align: center;
+    width: 50%;
+    background: rgba(128, 128, 128, 0.075);
+    /* background-color: rgb(236, 241, 247); */
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+    box-sizing: content-box;
+    position: relative;
+    outline: none;
+}
+.tabs:not(:last-child){
+    border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+.active-tabs{
+    /* background: white; */
+    background: rgb(54,153,255);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+}
+/* .active-tabs::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% + 2px);
+    height: 5px;
+    background: rgb(88, 147, 241);
+} */
+.book-tab>button {
+    border: none;
+}
+.book-tab-colon{
+    font-weight: 600;
+}
+.content {
+    background: white;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.active-content {
+    display: block;
+}
