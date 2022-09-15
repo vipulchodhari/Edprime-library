@@ -19,6 +19,20 @@
     grid-template-columns: auto auto auto;
     text-align: left;
 }
+
+.book-Stock-tab{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 80px;
+}
+
+.book-Stock-insights{
+    display: grid;
+    margin: 20px;
+    grid-template-columns: auto auto auto;
+    text-align: left;
+
+}
 .book-tab{
     display: flex;
     background-color: rgb(235, 238, 244);

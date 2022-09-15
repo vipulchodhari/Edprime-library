@@ -11,7 +11,6 @@ export function EditBookProvider({ children }){
     const [EditBookData, setEditBookData] = useState([]);
     const [bookList, setBookList] = useState([]);
 
-    
 
     useEffect(() => {
         const getBooksData = async() => {
