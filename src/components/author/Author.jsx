@@ -27,10 +27,10 @@ export const Author = () => {
     }))
     console.log("saga data in component", authorData);
 
-    authorData = authorData.filter((author) =>
-                    author.title.toLowerCase().includes(query) ||
-                    author.created_by.toLowerCase().includes(query)
-    )
+    // authorData = authorData.filter((author) =>
+    //                 author.title.toLowerCase().includes(query) ||
+    //                 author.created_by.toLowerCase().includes(query)
+    // )
 
     const dispatch = useDispatch();
     const handleChange = (e) => {

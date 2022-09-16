@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BookDetailsTab } from "./BookDetailsTab"
 import { BookStock } from "./BookStock";
 import { BookTransaction } from "./BookTransaction";
-import { BookUnitItme } from "./BookUnitItem";
+import { BookUnitItem } from "./BookUnitItem";
 import "../../../styles/bookDetails.css";
 
 export const BookDetails = () => {
@@ -51,7 +51,7 @@ export const BookDetails = () => {
                 <BookTransaction/>
             </div>
             <div className={toggle === 4 ? "content  active-content" : "content"}>
-                <BookUnitItme/>
+                <BookUnitItem/>
             </div>
         </div>
     </div>

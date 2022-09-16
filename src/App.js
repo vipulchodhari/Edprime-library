@@ -11,6 +11,7 @@ import { IssueBook } from './components/books/IssueBook';
 import { BookEdit } from './components/books/BookEdit';
 import { Member } from './components/member/Member';
 import { BookDetails } from './components/books/bookDetails/BookDetails';
+import { Demo } from './components/Demo';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/author-details' element={<AuthorDetails/>}></Route>
         <Route path='/issueBook' element={<IssueBook/>}></Route>
         <Route path='/member' element={<Member/>}></Route>
+        <Route path='/demo' element={<Demo/>}></Route>
       </Routes>
     </div>
   );

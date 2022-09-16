@@ -1,5 +1,5 @@
 import axios from "axios";
-import { authorUrl, booksUrl, categoryUrl, classUrl, genresUrl, languageUrl, memberUrl, subjectUrl } from "./common";
+import { authorUrl, booksUrl, categoryUrl, classUrl, genresUrl, languageUrl, memberUrl, publisherUrl, subjectUrl } from "./common";
 
 export const getAuthorData = async() => {
     let data = await axios.get(authorUrl)
@@ -52,6 +52,13 @@ export const getMemberData = async() => {
 
 export const getBookData = async() => {
     let data = await axios.get(booksUrl)
+    // console.log("fetch data", data.data);
+
+    return data.data
+}
+
+export const getPublisherData = async() => {
+    let data = await axios.get(publisherUrl)
     // console.log("fetch data", data.data);
 
     return data.data

@@ -3,14 +3,14 @@ import Multiselect from "multiselect-react-dropdown"
 import { useEffect, useState } from "react";
 import { imgInputFilePicker } from "../../utils/common";
 import customerBorder from '../../assets/upload.jpg';
-import { getAuthorData, getCategoryData, getClassData, getGenreData, getLanguageData, getSubjectData } from "../../utils/getApi";
+import { getAuthorData, getCategoryData, getClassData, getGenreData, getLanguageData, getPublisherData, getSubjectData } from "../../utils/getApi";
 import { useSelector } from "react-redux";
 
 export const AddBooks = () => {
-    const { editBookData } = useSelector((state) => ({
-        editBookData: state.booksAddState.data
-    }))
-    console.log("saga data in component", editBookData.book_title);
+    // const { editBookData } = useSelector((state) => ({
+    //     editBookData: state.booksAddState.data
+    // }))
+    // console.log("saga data in component", editBookData.book_title);
 
     const [aunthorData, setAuthorData] = useState([]);
     const [genreData, setGenreData] = useState([]);
@@ -18,6 +18,7 @@ export const AddBooks = () => {
     const [subjectData, setSubjectData] = useState([]);
     const [languageData, setLanguageData] = useState([]);
     const [categoryData, setCategoryData] = useState([]);
+    const [publisherData, setPublisherData] = useState([]);
     const [author, setAuthor] = useState([]);
     const [genre, setGenre] = useState([]);
     const [classs, setClasss] = useState([]);
@@ -30,13 +31,16 @@ export const AddBooks = () => {
 
     const [text, setText] = useState({
         book_title: "",
-        category_id: "",
-        language_id: "",
+        bookCategoryId: "",
+        languageId: "",
+        publisherId: "",
         isbn: "",
         book_Images: "",
         status: "",
-        created_by: ""
+        created_by: "",
+        modified_by: ""
     })
+    // console.log("pubshiler", typeof(text.publisherId));
 
     const handleChange = (e) => {
         const { name } = e.target;
@@ -50,16 +54,18 @@ export const AddBooks = () => {
     const handleSubmit = () => {
         axios.post(`http://192.100.100.111:1000/books`, {
             book_title: text.book_title,
-            category_id: text.category_id,
-            authorId: author,
-            genre_id: genre,
-            language_id: text.language_id,
-            class_id: classs,
-            subject_id: subject,
+            bookCategoryId: text.bookCategoryId,
+            authorIds: author,
+            genreIds: genre,
+            languageId: text.languageId,
+            edClassIds: classs,
+            subjectIds: subject,
+            publisherId: text.publisherId,
             isbn: text.isbn,
-            book_Images: text.book_Images,
-            status: text.status,
-            created_by: text.created_by
+            book_Images: text?.book_Images ?? 'dumyImage',
+            status: text.status === "true",
+            created_by: text.created_by,
+            modified_by: text.modified_by
         })
             .then((data) => console.log("post data", data))
             .catch((err) => console.log("post error", err.response.data.error))
@@ -72,6 +78,7 @@ export const AddBooks = () => {
         getSubjectData().then((res) => setSubjectData(res))
         getLanguageData().then((res) => setLanguageData(res))
         getCategoryData().then((res) => setCategoryData(res))
+        getPublisherData().then((res) => setPublisherData(res))
     }, [])
 
     const removeAuthor = async (arr, element) => {
@@ -134,7 +141,7 @@ export const AddBooks = () => {
                     }}
                     onSearch={function noRefCheck() { }}
                     onSelect={(selectedList,selectedItem) => {
-                        let autId = [...author, selectedItem._id]
+                        let autId = [...author, selectedItem.id]
                         setAuthor(autId);
 
                         // console.log("author data", selectedItem);
@@ -144,7 +151,7 @@ export const AddBooks = () => {
                 <label className="addbook-lable"><u>Book Title</u> :--</label>
                 <input onChange={handleChange} name='book_title' type='text' placeholder="Enter book title..." />
                 <label className="addbook-lable"><u>Category Type</u> :--</label>
-                <select className="addbook-status" name="category_id" onChange={handleChange}>
+                <select className="addbook-status" name="bookCategoryId" onChange={handleChange}>
                     <option className="addbook-select-hidden">Select Category</option>
                     {categoryData.map((el, i) => {
                         return <option value={el.id} key={i}>{el.title}</option>
@@ -166,9 +173,16 @@ export const AddBooks = () => {
                     placeholder={"Select Genre"}
                 />
                 <label className="addbook-lable"><u>Book status</u> :--</label>
-                <select className="addbook-status" name="language_id" onChange={handleChange}>
+                <select className="addbook-status" name="languageId" onChange={handleChange}>
                     <option className="addbook-select-hidden">Select Language</option>
                     {languageData.map((el, i) => {
+                        return <option value={el.id} key={i}>{el.title}</option>
+                    })}
+                </select>
+                <label className="addbook-lable"><u>Publisher Name</u> :--</label>
+                <select className="addbook-status" name="publisherId" onChange={handleChange}>
+                    <option className="addbook-select-hidden">Select Publisher</option>
+                    {publisherData.map((el, i) => {
                         return <option value={el.id} key={i}>{el.title}</option>
                     })}
                 </select>
@@ -205,8 +219,8 @@ export const AddBooks = () => {
                 <label className="addbook-lable"><u>ISBN Number</u> :--</label>
                 <input onChange={handleChange} name="isbn" style={{letterSpacing:"2px"}} type='text' placeholder="Enter isbn..." />
                 <label className="addbook-lable" style={{ marginTop: "30px"}}><u>Upload book Image</u> :--</label>
-                {/* <input onChange={handleChange} name="addbook_Images" type='text' placeholder="Enter book images..." /> */}
-                <img
+                <input onChange={handleChange} name="addbook_Images" type='file' placeholder="Enter book images..." />
+                {/* <img
                     style={{ width: "90px", height: "90px", borderRadius: "5px", cursor: 'pointer' }}
                     onClick={handleUpload}
                     src={
@@ -216,7 +230,8 @@ export const AddBooks = () => {
                     }
                     alt="Upload Pic"
                     title=""
-                />
+                /> */}
+                
                 <label className="addbook-lable"><u>Book status :--</u></label>
                 <select className="addbook-status" name="status" onChange={handleChange}>
                     <option className="addbook-select-hidden">Select</option>
@@ -225,6 +240,7 @@ export const AddBooks = () => {
                 </select>
                 <label className="addbook-lable"><u>Member name</u> :--</label>
                 <input onChange={handleChange} name="created_by" type='text' placeholder="Create By..." /><br/>
+                <input onChange={handleChange} name="modified_by" type='text' placeholder="Modified By..." /><br/>
 
                 <input onClick={handleSubmit} id='addbookCont-submit-btn' type='submit' />
             </form>
