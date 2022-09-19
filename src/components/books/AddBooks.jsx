@@ -56,7 +56,7 @@ export const AddBooks = () => {
             subjectIds: subject,
             publisherId: text.publisherId,
             isbn: text.isbn,
-            book_Images: text?.book_Images ?? 'dumyImage',
+            book_Images: text.book_Images,
             status: text.status === "true",
             created_by: text.created_by,
             modified_by: text.modified_by
@@ -213,7 +213,7 @@ export const AddBooks = () => {
                 <label className="addbook-lable"><u>ISBN Number</u> :--</label>
                 <input onChange={handleChange} name="isbn" style={{letterSpacing:"2px"}} type='text' placeholder="Enter isbn..." />
                 <label className="addbook-lable" style={{ marginTop: "30px"}}><u>Upload book Image</u> :--</label>
-                <input onChange={handleChange} name="addbook_Images" type='file' placeholder="Enter book images..." />
+                <input onChange={handleChange} name="book_Images" type='text' placeholder="Enter book images..." />
                 {/* <img
                     style={{ width: "90px", height: "90px", borderRadius: "5px", cursor: 'pointer' }}
                     onClick={handleUpload}

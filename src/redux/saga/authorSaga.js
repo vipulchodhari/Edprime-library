@@ -35,10 +35,10 @@ function* addAuthorData(payload){
 }
 
 function* deleteAuthorData(payload){
-    // console.log("id in saga", payload);
+    console.log("id in saga", payload);
     let id = payload.id;
     try{
-        yield axios.delete(`http://192.100.100.111:3000/authors/${id}`)
+        yield axios.delete(`http://192.100.100.111:1000/authors/${id}`)
     
         alert('Author is deleted')
     

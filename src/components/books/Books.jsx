@@ -81,7 +81,7 @@ export const Books = () => {
                             />
                         </td>
                         <td>
-                            <Link to={`/edit-book/${item._id}`}><img
+                            <Link to={`/edit-book/${item.id}`}><img
                                 alt='Edit'
                                 className='category-list-icon'
                                 // onClick={(e) => handleEdit(item)}

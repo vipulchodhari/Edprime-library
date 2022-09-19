@@ -8,7 +8,7 @@ export const Request_Author_Data = () => {
 }
 
 export const Request_Author_Delete = (id) => {
-    // console.log("action called", id);
+    console.log("action called", id);
     return {
         type: REQUEST_DELETE_AUTHOR,
         id

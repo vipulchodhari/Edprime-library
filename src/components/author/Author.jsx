@@ -164,6 +164,7 @@ export const Author = () => {
                             <td className='author-list-imgTag'>
                                 <Link to='/author-details' className='link-decoration'>
                                     <img className='author-list-img' src={`data:image/jpeg;base64,${item.author_image}`} alt='' />
+                                    {/* <img className='author-list-img' src={`http://192.100.100.52:2500/authors/${item.file}`} alt='' /> */}
                                 </Link>
                             </td>
                             <td>
@@ -176,7 +177,7 @@ export const Author = () => {
                                 <img
                                     alt='Delete'
                                     src={remove}
-                                    onClick={(e) => handleDelete(item._id)}
+                                    onClick={(e) => handleDelete(item.id)}
                                     className='category-list-icon'
                                 />
                             </td>

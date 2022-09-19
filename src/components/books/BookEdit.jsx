@@ -18,7 +18,7 @@ export const BookEdit = () => {
         axios.get(`http://192.100.100.111:3000/books/${BookId}`)
         .then((res) => {
             setEditBookData(res.data)
-            //  console.log(editBookData)
+             console.log("get DAta", editBookData)
         });
     }
     console.log("edit books params", editBookData);   
