@@ -4,14 +4,8 @@ import { useEffect, useState } from "react";
 import { imgInputFilePicker } from "../../utils/common";
 import customerBorder from '../../assets/upload.jpg';
 import { getAuthorData, getCategoryData, getClassData, getGenreData, getLanguageData, getPublisherData, getSubjectData } from "../../utils/getApi";
-import { useSelector } from "react-redux";
 
 export const AddBooks = () => {
-    // const { editBookData } = useSelector((state) => ({
-    //     editBookData: state.booksAddState.data
-    // }))
-    // console.log("saga data in component", editBookData.book_title);
-
     const [aunthorData, setAuthorData] = useState([]);
     const [genreData, setGenreData] = useState([]);
     const [classData, setClassData] = useState([]);

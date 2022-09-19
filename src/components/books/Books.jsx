@@ -10,13 +10,13 @@ import { useDispatch } from 'react-redux';
 import { Request_BookEdit_Data } from '../../redux/action/bookAddAction';
 
 export const Books = () => {
-    const [editBookData, setEditBookData] = useState();
-    const [close, setClose] = useState(false);
+    // const [editBookData, setEditBookData] = useState();
+    // const [close, setClose] = useState(false);
     const [bookList, setBookList] = useState([]);
     console.log("booklist", bookList);
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
     const handleDelete = (id) => {
         // axios.delete(`http://192.100.100.52:5000/books/${id}`)
         //   .then((res) => console.log(res))
@@ -26,11 +26,7 @@ export const Books = () => {
     const handleEdit = (item) => {
         // setEditBookData(item)
         // setClose(true);
-        
-        // navigate('/edit-book')
         console.log("edit", item);
-
-        // dispatch(Request_BookEdit_Data(item))
 
     }
 

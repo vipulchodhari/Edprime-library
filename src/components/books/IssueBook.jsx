@@ -126,9 +126,9 @@ export const IssueBook = () => {
                     </table>}
             </div>
 
-            <div>
-                <h2>Book - {book}</h2>
-                <h2>member - {member}</h2>
+            <div className="issue-book-selectname">
+                <h2><u>Book </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:- &nbsp;{book}</h2>
+                <h2><u>member</u> :- &nbsp;{member}</h2>
             </div>
         </div>
     </div>

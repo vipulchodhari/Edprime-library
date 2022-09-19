@@ -113,3 +113,10 @@
     border: none;
     border-radius: 5px;
 }
+.issue-book-selectname{
+    text-align: left;
+    margin-top: 60px;
+}
+.issue-book-selectname > h2{
+    margin-top: -20px;
+}
