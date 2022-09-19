@@ -52,7 +52,7 @@ function* addData(payload) {
 function* editData(payload) {
     console.log("before edit data in saga", payload);
     let id = payload.payload.id
-    let status = (payload.payload.status === "true")
+    let status = (payload.payload.status === "true", payload.payload.status === "Active")
     console.log("status", status);
     try{
         yield axios.patch(`http://192.100.100.111:3000/book-categories/${id}`, {

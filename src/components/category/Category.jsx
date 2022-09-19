@@ -146,7 +146,7 @@ export const Category = () => {
                             <td>{item?.title ?? ''}</td>
                             <td>{item?.created_by ?? ''}</td>
                             <td>{item?.modified_by ?? ''}</td>
-                            <td className={item.status ? "status-green" : "status red"}>{item.status ? "Active" : "In Active"}</td>
+                            <td className={item.status ? "status-green" : "status-red"}>{item.status ? "Active" : "In Active"}</td>
                             <td>
                                 <img
                                     alt=''

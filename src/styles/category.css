@@ -4,8 +4,9 @@
 .user-form-cont, .author-cont, .books-cont{
     border: 1px solid black;
     padding: 20px;
-    width: 64%;
+    width: 71%;
     margin: auto;
+    margin-left: 18%;
     text-align: left;
 }
 .user-form  > input, .category-status{
@@ -32,8 +33,9 @@
 .category-list-cont{
     border: 1px solid black;
     padding: 20px;
-    width: 64%;
+    width: 71%;
     margin: auto;
+    margin-left: 18%;
 }
 .category-list-table{
     border: 1px solid black;
@@ -60,12 +62,17 @@
     width: 10%;
     padding: 5px 15px;
 }
+.member-list-table>tbody>tr>td:nth-child(8),
+.member-list-table>tbody>tr>td:nth-child(9){
+    width: 10%;
+    padding: 5px 15px;
+}
 .category-list-icon{
     width: 40%;
     cursor: pointer;
 }
 .status-green{
-    color: green ;
+    color: green !important;
 }
 .status-red{
     color: red !important;
