@@ -87,25 +87,32 @@
     /* border: 1px solid black; */
     box-shadow: 0 8px 10px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 10%), 0 -8px 12px 0 rgb(0 0 0 / 5%), 0 -2px 3px -2px rgb(0 0 0 / 1%);
 }
-.issue-BookList-cont{
+
+.issue-BookList-cont {
     margin-top: 30px;
 }
-.issue-book-cont, .member-list-cont{
+
+.issue-book-cont,
+.member-list-cont {
     border: 1px solid black;
     padding: 20px;
     width: 71%;
     margin: auto;
     margin-left: 18%;
 }
-.issue-book-search{
+
+.issue-book-search {
     text-align: left;
     display: flex;
     justify-content: space-between;
 }
-.issue-book-search > form, .issue-book-member{
+
+.issue-book-search>form,
+.issue-book-member {
     width: 45%;
 }
-.issue-book-search>form>input{
+
+.issue-book-search>form>input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -113,10 +120,30 @@
     border: none;
     border-radius: 5px;
 }
-.issue-book-selectname{
+
+.issue-book-selectname {
     text-align: left;
     margin-top: 60px;
 }
-.issue-book-selectname > h2{
+
+.issue-book-selectname>h2 {
     margin-top: -20px;
+}
+
+.issue-book-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    width: 20%;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: rgb(25, 118, 209);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.table-custom thead tr th::before, .table-custom thead tr th::after{
+    opacity: 0 !important;
 }

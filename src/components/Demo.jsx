@@ -10,15 +10,6 @@ export const Demo = () => {
     const [demo, setDemo] = useState([]);
     console.log("demo data", demo);
 
-    // const handleUpload = async (e) => {
-    //     try {
-    //         const authorImg = await imgInputFilePicker();
-    //         setUserpic(authorImg.base64)
-    //     } catch (err) {
-    //         console.log("error", err);
-    //     }
-    // }
-
     const handleUpload = (e) => {
         let files = e.target.files;
         console.log("image", files[0])

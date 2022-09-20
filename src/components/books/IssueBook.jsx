@@ -1,3 +1,4 @@
+import { border } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
@@ -5,11 +6,12 @@ import { Request_Book_Data, Request_Search_Book } from "../../redux/action/bookA
 import { Request_Member_Data, Request_Search_Member } from "../../redux/action/memberAction";
 // import { getBookData, getMemberData } from "../../utils/getApi";
 
-
 export const IssueBook = () => {
     const [show, setShow] = useState(true);
     const [book, setBook] = useState("");
+    const [bookId, setBookId] = useState("");
     const [member, setMember] = useState("");
+    const [memberId, setMemberId] = useState("");
     const [query, setQuery] = useState("");
 
     let { bookData, memberData } = useSelector((state) => ({
@@ -24,11 +26,11 @@ export const IssueBook = () => {
     //                 member.created_by.toLowerCase().includes(query)
     // )
     bookData = bookData.filter((book) =>
-                    book.book_title.toLowerCase().includes(query) ||
-                    book.author.title.toLowerCase().includes(query) ||
-                    book.bookCategory.title.toLowerCase().includes(query) ||
-                    book.edClass.title.toLowerCase().includes(query) ||
-                    book.language.title.toLowerCase().includes(query) 
+        book.book_title.toLowerCase().includes(query) ||
+        book.author.title.toLowerCase().includes(query) ||
+        book.bookCategory.title.toLowerCase().includes(query) ||
+        book.edClass.title.toLowerCase().includes(query) ||
+        book.language.title.toLowerCase().includes(query)
     )
 
     const dispatch = useDispatch();
@@ -50,11 +52,17 @@ export const IssueBook = () => {
         dispatch(Request_Search_Member(q))
     }
 
+    const handleIssue = () => {
+        axios.post('http://192.100.100.111:1000/book-lendings', {
+            
+        })
+    }
+
     useEffect(() => {
         dispatch(Request_Book_Data())
         dispatch(Request_Member_Data())
     }, [])
-   
+
     // console.log("issue-memberData", memberData);
 
     return <div>
@@ -66,12 +74,12 @@ export const IssueBook = () => {
                     <input onChange={searchBook} type='text' placeholder="Search by Book name, Author name, Category name, Class name..." />
                 </form>
                 <form>
-                <label className="addbook-lable">&nbsp;<u>Members :</u></label>
+                    <label className="addbook-lable">&nbsp;<u>Members :</u></label>
                     <input onChange={searchMember} className="issue-member" type='text' placeholder="Search by Member name, Member email..." />
                 </form>
             </div>
             <div className="issue-BookList-cont">
-                {show ? <table className='category-list-table'>
+                {show ? <table className='category-list-table display' id="table_id">
                     <tbody>
                         <tr>
                             <th>S.No</th>
@@ -83,19 +91,20 @@ export const IssueBook = () => {
                             <th>Language</th>
                             <th>Select</th>
                         </tr>
-                        {bookData?bookData?.map((el, i) => (
+                        {bookData ? bookData?.map((el, i) => (
                             <tr key={i}>
                                 <td>{i + 1}</td>
                                 <td>Book image</td>
                                 <td>{el?.book_title ?? ''}</td>
-                                <td>{el?.author?.title  ?? ''}</td>
-                                <td>{el?.bookCategory?.title  ?? ''}</td>
-                                <td>{el?.edClass?.title  ?? ''}</td>
-                                <td>{el?.language?.title  ?? ''}</td>
+                                <td>{el?.author?.title ?? ''}</td>
+                                <td>{el?.bookCategory?.title ?? ''}</td>
+                                <td>{el?.edClass?.title ?? ''}</td>
+                                <td>{el?.language?.title ?? ''}</td>
                                 <td>
                                     <button style={{ cursor: "pointer", color: "green", fontWeight: '600' }} onClick={() =>
-                                    setBook(el?.book_title  ?? '')
-                                }><u>Select</u></button></td>
+                                        {setBook(el?.book_title ?? '')
+                                        setBookId(el.id)}
+                                    }><u>Select</u></button></td>
                             </tr>
                         )) : <h1>No Data Found</h1>}
                     </tbody>
@@ -110,26 +119,31 @@ export const IssueBook = () => {
                                 <th>SSO ID</th>
                                 <th>Select</th>
                             </tr>
-                            {memberData.length? memberData.map((el, i) => {
+                            {memberData.length ? memberData.map((el, i) => {
                                 return <tr key={i}>
                                     <td>{i + 1}</td>
                                     <td>Member image</td>
                                     <td>{el?.name ?? ''}</td>
                                     <td>{el?.created_by ?? ''}</td>
                                     <td>{el?.sso_id ?? ''}</td>
-                                    <td><button style={{ cursor: "pointer", color: "green", fontWeight: '600' }} onClick={() => 
-                                        setMember(el?.name ?? '')
+                                    <td><button style={{ cursor: "pointer", color: "green", fontWeight: '600' }} onClick={() =>
+                                        {setMember(el?.name ?? '')
+                                        setMemberId(el._id)}
                                     }><u>Select</u></button></td>
                                 </tr>
-                            }) : <h1 style={{textAlign:"center"}}>No Data Found</h1>}
+                            }) : <h1 style={{ textAlign: "center" }}>No Data Found</h1>}
                         </tbody>
                     </table>}
             </div>
+            
+            <button onClick={handleIssue} className="issue-book-btn">Issue</button>
 
-            <div className="issue-book-selectname">
-                <h2><u>Book </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:- &nbsp;{book}</h2>
-                <h2><u>member</u> :- &nbsp;{member}</h2>
-            </div>
+
+
+        <div className="issue-book-selectname">
+            <h2><u>Book </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:- &nbsp;{book}</h2>
+            <h2><u>member</u> :- &nbsp;{member}</h2>
         </div>
     </div>
+    </div >
 }

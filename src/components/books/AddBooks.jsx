@@ -25,16 +25,16 @@ export const AddBooks = () => {
 
     const [text, setText] = useState({
         book_title: "",
-        bookCategoryId: "",
-        languageId: "",
-        publisherId: "",
+        bookCategoryId: 0,
+        languageId: 0,
+        publisherId: 0,
         isbn: "",
         book_Images: "",
         status: "",
         created_by: "",
         modified_by: ""
     })
-    // console.log("pubshiler", typeof(text.publisherId));
+    console.log("pubshiler", text.publisherId, text.bookCategoryId);
 
     const handleChange = (e) => {
         const { name } = e.target;
@@ -45,24 +45,44 @@ export const AddBooks = () => {
         // console.log("text", text);
     }
 
-    const handleSubmit = () => {
-        axios.post(`http://192.100.100.111:1000/books`, {
+    const handleSubmit = async() => {
+        // e.preventDefault()
+        const formData = new FormData()
+        formData.append("file", text.book_Images)
+
+        try {
+            const res = await axios({
+                method: "post",
+                url: 'http://192.100.100.52:2500/files',
+                data: formData
+            })
+            console.log("response", res);
+            // await axios.post('http://192.100.100.52:2500/authors', {
+            //     file: res.data
+            // })
+            await axios.post(`http://192.100.100.111:1000/books`, {
             book_title: text.book_title,
-            bookCategoryId: text.bookCategoryId,
+            bookCategoryId: +text.bookCategoryId,
             authorIds: author,
             genreIds: genre,
-            languageId: text.languageId,
+            languageId: +text.languageId,
             edClassIds: classs,
             subjectIds: subject,
-            publisherId: text.publisherId,
+            publisherId: +text.publisherId,
             isbn: text.isbn,
-            book_Images: text.book_Images,
+            book_Images: res.data,
             status: text.status === "true",
             created_by: text.created_by,
             modified_by: text.modified_by
         })
             .then((data) => console.log("post data", data))
-            .catch((err) => console.log("post error", err.response.data.error))
+            alert("final submit work")
+        } catch (err) {
+            console.log("error", err)
+        }
+
+        
+            // .catch((err) => console.log("post error", err.response.data.error))
     }
 
     useEffect(() => {
@@ -77,7 +97,7 @@ export const AddBooks = () => {
 
     const removeAuthor = async (arr, element) => {
         setAuthor(arr.filter(chekout))
-        function chekout(target){
+        function chekout(target) {
             let el = element;
             return target !== el;
         }
@@ -86,7 +106,7 @@ export const AddBooks = () => {
 
     const removeGenre = async (arr, element) => {
         setGenre(arr.filter(chekout))
-        function chekout(target){
+        function chekout(target) {
             let el = element;
             return target !== el;
         }
@@ -94,7 +114,7 @@ export const AddBooks = () => {
 
     const removeClass = async (arr, element) => {
         setClasss(arr.filter(chekout))
-        function chekout(target){
+        function chekout(target) {
             let el = element;
             return target !== el;
         }
@@ -102,39 +122,50 @@ export const AddBooks = () => {
 
     const removeSubject = async (arr, element) => {
         setSubject(arr.filter(chekout))
-        function chekout(target){
+        function chekout(target) {
             let el = element;
             return target !== el;
         }
     }
 
-    const handleUpload = async () => {
-        try {
-            const book_Images = await imgInputFilePicker();
-            setText({
-                ...text,
-                book_Images: book_Images.base64,
-            })
-        } catch (err) {
-            console.log("error", err);
-        }
+    // const handleUpload = async () => {
+    //     try {
+    //         const book_Images = await imgInputFilePicker();
+    //         setText({
+    //             ...text,
+    //             book_Images: book_Images.base64,
+    //         })
+    //     } catch (err) {
+    //         console.log("error", err);
+    //     }
+    // }
+
+    const handleUpload = (e) => {
+        let files = e.target.files;
+        console.log("image", files[0])
+
+        setText({
+            ...text,
+            book_Images: files[0]
+        })
+        // setAuthro_image()
     }
 
     return <div className="addbook-controller">
         <h1>Book Create</h1>
         <div className="addbook-cont">
-            <form className='addbook-form' onSubmit={(e) => e.preventDefault()}>
+            <form className='addbook-form'>
                 <label className="addbook-lable"><u>Author name</u> :--</label>
-                <Multiselect 
+                <Multiselect
                     options={aunthorData}
-                    displayValue="title"   
+                    displayValue="title"
                     // closeIcon="close"
                     onKeyPressFn={function noRefCheck() { }}
-                    onRemove={(selectedList,selectedItem) => {
-                        removeAuthor(selectedList,selectedItem);    
+                    onRemove={(selectedList, selectedItem) => {
+                        removeAuthor(selectedList, selectedItem);
                     }}
                     onSearch={function noRefCheck() { }}
-                    onSelect={(selectedList,selectedItem) => {
+                    onSelect={(selectedList, selectedItem) => {
                         let autId = [...author, selectedItem.id]
                         setAuthor(autId);
 
@@ -152,15 +183,15 @@ export const AddBooks = () => {
                     })}
                 </select>
                 <label className="addbook-lable"><u>Genre name</u> :--</label>
-                <Multiselect 
+                <Multiselect
                     options={genreData}
-                    displayValue="title"   
+                    displayValue="title"
                     onKeyPressFn={function noRefCheck() { }}
-                    onRemove={(selectedList,selectedItem) => {
-                        removeGenre(selectedList,selectedItem);    
+                    onRemove={(selectedList, selectedItem) => {
+                        removeGenre(selectedList, selectedItem);
                     }}
                     onSearch={function noRefCheck() { }}
-                    onSelect={(selectedList,selectedItem) => {
+                    onSelect={(selectedList, selectedItem) => {
                         let autId = [...genre, selectedItem.id]
                         setGenre(autId);
                     }}
@@ -181,39 +212,39 @@ export const AddBooks = () => {
                     })}
                 </select>
                 <label className="addbook-lable"><u>Class name</u> :--</label>
-                <Multiselect 
+                <Multiselect
                     options={classData}
-                    displayValue="title"   
+                    displayValue="title"
                     onKeyPressFn={function noRefCheck() { }}
-                    onRemove={(selectedList,selectedItem) => {
-                        removeClass(selectedList,selectedItem);    
+                    onRemove={(selectedList, selectedItem) => {
+                        removeClass(selectedList, selectedItem);
                     }}
                     onSearch={function noRefCheck() { }}
-                    onSelect={(selectedList,selectedItem) => {
+                    onSelect={(selectedList, selectedItem) => {
                         let autId = [...classs, selectedItem.id]
                         setClasss(autId);
                     }}
                     placeholder={"Select Class"}
                 />
                 <label className="addbook-lable"><u>Subject name</u> :--</label>
-                <Multiselect 
+                <Multiselect
                     options={subjectData}
-                    displayValue="title"   
+                    displayValue="title"
                     onKeyPressFn={function noRefCheck() { }}
-                    onRemove={(selectedList,selectedItem) => {
-                        removeSubject(selectedList,selectedItem);    
+                    onRemove={(selectedList, selectedItem) => {
+                        removeSubject(selectedList, selectedItem);
                     }}
                     onSearch={function noRefCheck() { }}
-                    onSelect={(selectedList,selectedItem) => {
+                    onSelect={(selectedList, selectedItem) => {
                         let autId = [...subject, selectedItem.id]
                         setSubject(autId);
                     }}
                     placeholder={"Select Subject"}
                 />
                 <label className="addbook-lable"><u>ISBN Number</u> :--</label>
-                <input onChange={handleChange} name="isbn" style={{letterSpacing:"2px"}} type='text' placeholder="Enter isbn..." />
-                <label className="addbook-lable" style={{ marginTop: "30px"}}><u>Upload book Image</u> :--</label>
-                <input onChange={handleChange} name="book_Images" type='text' placeholder="Enter book images..." />
+                <input onChange={handleChange} name="isbn" style={{ letterSpacing: "2px" }} type='text' placeholder="Enter isbn..." />
+                <label className="addbook-lable" style={{ marginTop: "30px" }}><u>Upload book Image</u> :--</label>
+                {/* <input onChange={handleChange} name="book_Images" type='text' placeholder="Enter book images..." /> */}
                 {/* <img
                     style={{ width: "90px", height: "90px", borderRadius: "5px", cursor: 'pointer' }}
                     onClick={handleUpload}
@@ -225,7 +256,17 @@ export const AddBooks = () => {
                     alt="Upload Pic"
                     title=""
                 /> */}
-                
+                <label htmlFor="file-input">
+                    <img style={{ cursor: 'pointer', width: '100px' }} src={customerBorder} alt="upload pic" />
+                    <p style={{ marginTop: '-20px', color: 'gray' }}><strong>{text.book_Images.name}</strong></p>
+                </label>
+                <input
+                    style={{ display: 'none', cursor: 'pointer' }}
+                    id="file-input"
+                    type='file'
+                    onChange={handleUpload}
+                />
+
                 <label className="addbook-lable"><u>Book status :--</u></label>
                 <select className="addbook-status" name="status" onChange={handleChange}>
                     <option className="addbook-select-hidden">Select</option>
@@ -233,8 +274,8 @@ export const AddBooks = () => {
                     <option value='false'>In Active</option>
                 </select>
                 <label className="addbook-lable"><u>Member name</u> :--</label>
-                <input onChange={handleChange} name="created_by" type='text' placeholder="Create By..." /><br/>
-                <input onChange={handleChange} name="modified_by" type='text' placeholder="Modified By..." /><br/>
+                <input onChange={handleChange} name="created_by" type='text' placeholder="Create By..." /><br />
+                <input onChange={handleChange} name="modified_by" type='text' placeholder="Modified By..." /><br />
 
                 <input onClick={handleSubmit} id='addbookCont-submit-btn' type='submit' />
             </form>
