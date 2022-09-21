@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { Request_Edit_Data } from "../../redux/action/categoryAction";
-import '../../styles/categoryEdit.css';
+import {Request_Edit_Genre } from "../../redux/action/genreAction";
+import '../../styles/genreEdit.css';
 
-export const CategoryEdit = ({ setClose, editData, }) => {
-    const [Eimage, setEImage] = useState(editData.category_image);
+export const GenreEdit = ({ setClose, editData, }) => {
+    const [Eimage, setEImage] = useState(editData.genre_image);
     const [Ename, setEName] = useState(editData.title);
     const [Ecreate_by, setECreated_by] = useState(editData.created_by);
     const [Emodified_by, setEModified_by] = useState(editData.modified_by);
@@ -15,7 +15,7 @@ export const CategoryEdit = ({ setClose, editData, }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(Request_Edit_Data(Eimage, Ename, Ecreate_by, Emodified_by, EStatus, editData.id))
+        dispatch(Request_Edit_Genre(Eimage, Ename, Ecreate_by, Emodified_by, EStatus, editData.id))
         setClose(false)
     }
     return <div className='categoryedit-cont'>

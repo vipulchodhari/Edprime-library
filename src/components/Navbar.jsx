@@ -117,6 +117,18 @@ export const Navbar = () => {
                             </ListItemButton>
                         </ListItem>
                     </Link>
+
+                    <Link to='/genre' className='link-decoration'>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <QuizIcon className='navbar-icon d-icon5' />
+                                </ListItemIcon>
+                                <ListItemText className='navbar-icon-text' primary='Genre' />
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
+
                 </List>
             </Drawer>
 

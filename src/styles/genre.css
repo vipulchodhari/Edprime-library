@@ -1,0 +1,92 @@
+.user-container{
+    margin: 25px;
+}
+.user-form-cont, .author-cont, .books-cont{
+    border: 1px solid black;
+    padding: 20px;
+    width: 71%;
+    margin: auto;
+    margin-left: 18%;
+    text-align: left;
+}
+.user-form  > input, .category-status{
+    width: 35%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: rgb(236, 241, 247);
+    border: none;
+    border-radius: 5px;
+}
+.category-status > option{
+    font-size: 15px;;
+}
+#submit-btn{
+    width: 10%;
+    background-color: rgb(25,118,209);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.category-list-cont{
+    border: 1px solid black;
+    padding: 20px;
+    width: 71%;
+    margin: auto;
+    margin-left: 18%;
+}
+.category-list-table{
+    border: 1px solid black;
+    width: 100%;
+}
+.category-list-table>tbody>tr>th{
+    background-color: rgb(247, 188, 136);
+}
+.category-list-table>tbody>tr>th,
+.category-list-table>tbody>tr>td{
+    border: 1px solid black;
+}
+.category-list-table>tbody>tr>td{
+    color: rgb(63,74,74);
+    font-weight: 600;
+}
+.category-list-table>tbody>tr>td:nth-child(7),
+.category-list-table>tbody>tr>td:nth-child(8){
+    width: 10%;
+    padding: 5px 15px;
+}
+.author-list-table>tbody>tr>td:nth-child(5),
+.author-list-table>tbody>tr>td:nth-child(6){
+    width: 10%;
+    padding: 5px 15px;
+}
+.member-list-table>tbody>tr>td:nth-child(8),
+.member-list-table>tbody>tr>td:nth-child(9){
+    width: 10%;
+    padding: 5px 15px;
+}
+.category-list-icon{
+    width: 40%;
+    cursor: pointer;
+}
+.status-green{
+    color: green !important;
+}
+.status-red{
+    color: red !important;
+}
+
+
+
+
+
+
+
+
+/* useEffect(() => {
+    fetch("https://reqres.in/api/users")
+        .then((x) => x.json())
+        .then(({ data }) => setUsers(data))
+}, []); */

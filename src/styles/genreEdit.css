@@ -1,0 +1,42 @@
+.categoryedit-cont {
+    width: 30%;
+    margin: auto;
+    padding: 10px;
+    padding-top: 25px;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    transform: translateY(-30%);
+    /* background-color: whitesmoke; */
+    background-color: rgb(240, 237, 237);
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+  .authoredit-cont{
+    width: 25%;
+  }
+  .categoryedit-input {
+    margin-bottom: 12px;
+    width: 45%;
+    padding: 8px;
+    /* border-radius: 3px; */
+    /* border-color: lightgray; */
+    text-align: center;
+  }
+  .authoredit-input{
+   width: 80%; 
+  }
+  .submit {
+    width: 40%;
+    padding: 8px;
+    cursor: pointer;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+  }
+  .category-edit-submit{
+    width: 45%;
+  }
