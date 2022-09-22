@@ -151,7 +151,7 @@ export const Category = () => {
                                 <img
                                     alt=''
                                     src={remove}
-                                    onClick={(e) => handleDelete(item._id)}
+                                    onClick={(e) => handleDelete(item.id)}
                                     className='category-list-icon' />
                             </td>
                             <td>

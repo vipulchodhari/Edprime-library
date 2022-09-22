@@ -11,13 +11,18 @@
 }
 .book-details-tab{
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 20px;
+    grid-template-columns: 20% 80%;
+    gap: 25px;
+}
+.book-details-parent-grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
 .book-details-grid{
     display: grid;
     grid-template-columns: auto auto auto;
     text-align: left;
+    /* margin-right: 110px; */
 }
 .book-tab{
     display: flex;

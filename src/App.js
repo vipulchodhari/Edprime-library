@@ -12,6 +12,7 @@ import { BookEdit } from './components/books/BookEdit';
 import { Member } from './components/member/Member';
 import { BookDetails } from './components/books/bookDetails/BookDetails';
 import { Demo } from './components/Demo';
+// import { NewEditBook } from './components/books/NewEditBook';
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route path='/books' element={<Books/>}></Route>
         <Route path='/add-books' element={<AddBooks/>}></Route>
         <Route path='/edit-book/:id' element={<BookEdit/>}></Route>
-        <Route path='/book-details' element={<BookDetails/>}></Route>
+        {/* <Route path='/edit-book/:id' element={<NewEditBook/>}></Route> */}
+        <Route path='/book-details/:id' element={<BookDetails/>}></Route>
         <Route path='/category' element={<Category/>}></Route>
         <Route path='/author' element={<Author/>}></Route>
         <Route path='/author-details' element={<AuthorDetails/>}></Route>

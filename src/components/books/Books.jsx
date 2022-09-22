@@ -1,6 +1,6 @@
 import edit from '../../assets/edit.png';
 import remove from '../../assets/remove.png';
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/books.css";
 import axios from 'axios';
@@ -13,15 +13,25 @@ export const Books = () => {
     const [bookList, setBookList] = useState([]);
     console.log("booklist", bookList);
     const handleDelete = (id) => {
-        // axios.delete(`http://192.100.100.52:5000/books/${id}`)
+        // axios.delete(`http://192.100.100.111:1000/books/${id}`)
         //   .then((res) => console.log(res))
         //   .then((res) => setBookList(res))
     }
+   
+    // const showLoading = useCallback(() => {
+    //     return 2 + 2;
+    // }, [bookList])
 
     const getBooksData = async () => {
-        await axios.get(booksUrl)
-            .then((res) => setBookList(res.data))
+        await axios.get(`${booksUrl}/books`)
+            .then((res) => {
+                setBookList(res.data)
+            })
     }
+
+    // function logResult() {
+    //     return 2 + 2;
+    // }
 
     useEffect(() => {
         getBooksData()
@@ -49,16 +59,16 @@ export const Books = () => {
                         return <tr key={i}>
                             <td>{i + 1}</td>
                             <td className='author-list-imgTag'>
-                                <Link to='/book-details' className='link-decoration'>
+                                <Link to={`/book-details/${item.id}`} className='link-decoration'>
                                     <img
                                         className='author-list-img'
-                                        src={`http://192.100.100.52:2500/${item.book_Images}`}
+                                        src={`http://192.100.100.52:3500/${item.book_Images}`}
                                         alt=''
                                     />
                                 </Link>
                             </td>
                             <td>
-                                <Link to='/book-details' className='link-decoration'>
+                                <Link to={`/book-details/${item.id}`} className='link-decoration'>
                                     {item.book_title}
                                 </Link>
                             </td>

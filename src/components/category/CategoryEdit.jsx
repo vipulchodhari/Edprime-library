@@ -15,7 +15,7 @@ export const CategoryEdit = ({ setClose, editData, }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(Request_Edit_Data(Eimage, Ename, Ecreate_by, Emodified_by, EStatus, editData._id))
+        dispatch(Request_Edit_Data(Eimage, Ename, Ecreate_by, Emodified_by, EStatus, editData.id))
         setClose(false)
     }
     return <div className='categoryedit-cont'>

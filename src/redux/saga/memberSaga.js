@@ -22,7 +22,9 @@ function* searchMember(payload){
 function* editMember(payload) {
     console.log("before edit data in saga", payload);
     let id = payload.payload.id
-    let status = (payload.payload.EStatus === "true" || payload.payload.EStatus === "Active")
+    let status = (payload.payload.EStatus === "true" ||
+                  payload.payload.EStatus === true || 
+                  payload.payload.EStatus === "Active")
     console.log("status", status);
     try{
         yield axios.patch(`http://192.100.100.111:3000/members/${id}`, {

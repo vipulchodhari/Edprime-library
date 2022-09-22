@@ -1,9 +1,9 @@
 import axios from "axios";
 import Multiselect from "multiselect-react-dropdown"
 import { useEffect, useState } from "react";
-import { imgInputFilePicker } from "../../utils/common";
 import customerBorder from '../../assets/upload.jpg';
 import { getAuthorData, getCategoryData, getClassData, getGenreData, getLanguageData, getPublisherData, getSubjectData } from "../../utils/getApi";
+import { useNavigate } from "react-router-dom";
 
 export const AddBooks = () => {
     const [aunthorData, setAuthorData] = useState([]);
@@ -17,6 +17,8 @@ export const AddBooks = () => {
     const [genre, setGenre] = useState([]);
     const [classs, setClasss] = useState([]);
     const [subject, setSubject] = useState([]);
+
+    const navigate = useNavigate();
 
     console.log('author seclect,', author);
     console.log('genre seclect,', genre);
@@ -32,7 +34,8 @@ export const AddBooks = () => {
         book_Images: "",
         status: "",
         created_by: "",
-        modified_by: ""
+        modified_by: "",
+        show_img: ""
     })
     console.log("pubshiler", text.publisherId, text.bookCategoryId);
 
@@ -45,21 +48,18 @@ export const AddBooks = () => {
         // console.log("text", text);
     }
 
-    const handleSubmit = async() => {
-        // e.preventDefault()
+    const handleSubmit = async(e) => {
+        e.preventDefault()
         const formData = new FormData()
         formData.append("file", text.book_Images)
 
         try {
             const res = await axios({
                 method: "post",
-                url: 'http://192.100.100.52:2500/files',
+                url: 'http://192.100.100.52:3500/files',
                 data: formData
             })
             console.log("response", res);
-            // await axios.post('http://192.100.100.52:2500/authors', {
-            //     file: res.data
-            // })
             await axios.post(`http://192.100.100.111:1000/books`, {
             book_title: text.book_title,
             bookCategoryId: +text.bookCategoryId,
@@ -77,6 +77,7 @@ export const AddBooks = () => {
         })
             .then((data) => console.log("post data", data))
             alert("final submit work")
+            navigate("/books")
         } catch (err) {
             console.log("error", err)
         }
@@ -142,14 +143,17 @@ export const AddBooks = () => {
 
     const handleUpload = (e) => {
         let files = e.target.files;
+        // setFile(URL.createObjectURL(e.target.files[0]));
         console.log("image", files[0])
 
         setText({
             ...text,
+            show_img: URL.createObjectURL(files[0]),
             book_Images: files[0]
         })
         // setAuthro_image()
     }
+    console.log("jfkldfjdl", text.book_Images);
 
     return <div className="addbook-controller">
         <h1>Book Create</h1>
@@ -242,30 +246,25 @@ export const AddBooks = () => {
                     placeholder={"Select Subject"}
                 />
                 <label className="addbook-lable"><u>ISBN Number</u> :--</label>
-                <input onChange={handleChange} name="isbn" style={{ letterSpacing: "2px" }} type='text' placeholder="Enter isbn..." />
+                <input onChange={handleChange} name="isbn" style={{ letterSpacing: "2px" }} type='text'   placeholder="Enter isbn..." />
+
                 <label className="addbook-lable" style={{ marginTop: "30px" }}><u>Upload book Image</u> :--</label>
-                {/* <input onChange={handleChange} name="book_Images" type='text' placeholder="Enter book images..." /> */}
-                {/* <img
-                    style={{ width: "90px", height: "90px", borderRadius: "5px", cursor: 'pointer' }}
-                    onClick={handleUpload}
-                    src={
-                        text.book_Images.length
-                            ? `data:image/jpeg;base64,${text.book_Images}`
-                            : customerBorder
-                    }
-                    alt="Upload Pic"
-                    title=""
-                /> */}
+                <div style={{display: "flex"}}>
                 <label htmlFor="file-input">
-                    <img style={{ cursor: 'pointer', width: '100px' }} src={customerBorder} alt="upload pic" />
-                    <p style={{ marginTop: '-20px', color: 'gray' }}><strong>{text.book_Images.name}</strong></p>
+                    <img style={{ cursor: 'pointer', width: "90px", height: "90px", borderRadius: "5px" }} src={    text.book_Images? text.show_img : customerBorder} alt="upload pic" />
+                    <p style={{ marginTop: '0px', color: 'gray' }}><strong>{text.book_Images.name}</strong></p>
                 </label>
                 <input
                     style={{ display: 'none', cursor: 'pointer' }}
+                    // style={{ marginTop:'25px' }}
                     id="file-input"
                     type='file'
                     onChange={handleUpload}
                 />
+                {/* <img 
+                  style={{ width: "90px", height: "90px", borderRadius: "5px"}}
+                  src={text.book_Images? text.show_img : ""} alt=''/> */}
+                </div>
 
                 <label className="addbook-lable"><u>Book status :--</u></label>
                 <select className="addbook-status" name="status" onChange={handleChange}>

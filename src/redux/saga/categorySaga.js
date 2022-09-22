@@ -15,7 +15,7 @@ function* deleteData(payload) {
     // console.log("id in saga", payload);
     let id = payload.id;
     try{
-        yield axios.delete(`http://192.100.100.111:3000/book-categories/${id}`)
+        yield axios.delete(`http://192.100.100.111:1000/book-categories/${id}`)
     
         alert('Your category deleted')
     
@@ -52,10 +52,12 @@ function* addData(payload) {
 function* editData(payload) {
     console.log("before edit data in saga", payload);
     let id = payload.payload.id
-    let status = (payload.payload.status === "true", payload.payload.status === "Active")
+    let status = (payload.payload.status === "true" ||
+                  payload.payload.status === true ||
+                  payload.payload.status === "Active")
     console.log("status", status);
     try{
-        yield axios.patch(`http://192.100.100.111:3000/book-categories/${id}`, {
+        yield axios.patch(`http://192.100.100.111:1000/book-categories/${id}`, {
             category_image: payload.payload.image,
             title: payload.payload.title,
             created_by: payload.payload.created_by,
