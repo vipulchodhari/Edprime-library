@@ -13,6 +13,10 @@ import { Member } from './components/member/Member';
 import { BookDetails } from './components/books/bookDetails/BookDetails';
 import { Demo } from './components/Demo';
 import { Genre } from './components/genre/Genre';
+import { AddMember } from './components/member/AddMember';
+import { MemberList } from './components/member/MemberList';
+import {ExpiredMember} from './components/member/ExpiredMember';
+import { ActiveMember } from './components/member/ActiveMember';
 
 function App() {
   return (
@@ -31,6 +35,10 @@ function App() {
         <Route path='/member' element={<Member/>}></Route>
         <Route path='/demo' element={<Demo/>}></Route>
         <Route path='/genre' element={<Genre/>}></Route>
+        <Route path='/addmember'element={<AddMember/>}></Route>
+        <Route path='/memberlist'element={<MemberList/>}></Route>
+        <Route path='/expiredmember'element={<ExpiredMember/>}></Route>
+        <Route path='/activemember'element={<ActiveMember/>}></Route>
       </Routes>
     </div>
   );

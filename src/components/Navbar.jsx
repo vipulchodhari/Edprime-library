@@ -14,13 +14,22 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import StarBorder from '@mui/icons-material/StarBorder';
+import Collapse from '@mui/material/Collapse';
 import QuizIcon from '@mui/icons-material/Quiz';
 import '../styles/navbar.css';
 import { Link } from 'react-router-dom';
 
+
 const drawerWidth = 240;
 
 export const Navbar = () => {
+    const [open, setOpen] = React.useState(true);
+    const handleClick = () => {
+        setOpen(!open);
+      };
     return <div>
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -78,14 +87,74 @@ export const Navbar = () => {
                         </ListItem>
                     </Link>
                     <Link to="/member" className='link-decoration'>
-                    <ListItem disablePadding>
-                        <ListItemButton>
+                    
+                    <ListItemButton onClick={handleClick}>
+                        <ListItemIcon>
+                        <PersonIcon className='navbar-icon d-icon3' />
+                        </ListItemIcon>
+                        <ListItemText primary="Member" />
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+
+                    <Link to="/activemember" className='link-decoration'>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                        <ListItemButton sx={{ pl: 4 }}>
                             <ListItemIcon>
-                                <PersonIcon className='navbar-icon d-icon3' />
+                            <StarBorder />
                             </ListItemIcon>
-                            <ListItemText className='navbar-icon-text' primary='Member' />
+                            <ListItemText primary="Active member" />
+                            
                         </ListItemButton>
-                    </ListItem>
+                        </List>
+                    </Collapse>
+
+                    <Link to="/addmember" className='link-decoration'>
+
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                        <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemIcon>
+                            <StarBorder />
+                            </ListItemIcon>
+                            <ListItemText primary="Add Member" />
+                            
+                        </ListItemButton>
+                        </List>
+                    </Collapse>
+
+                    <Link to="/memberlist" className='link-decoration'>
+
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                        <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemIcon>
+                            <StarBorder />
+                            </ListItemIcon>
+                            <ListItemText primary="Member List" />
+                            
+                        </ListItemButton>
+                        </List>
+                    </Collapse>
+                       
+                    <Link to="/expiredmember" className='link-decoration'>
+                        
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                        <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemIcon>
+                            <StarBorder />
+                            </ListItemIcon>
+                            <ListItemText primary="Expired Membership" />
+                            
+                        </ListItemButton>
+                        </List>
+                    </Collapse>
+
+                    </Link>
+                   </Link>
+                   </Link>
+
                     </Link>
                     <Link to="/category" className='link-decoration'>
                         <ListItem disablePadding>
@@ -128,8 +197,10 @@ export const Navbar = () => {
                             </ListItemButton>
                         </ListItem>
                     </Link>
+                    </Link>
 
                 </List>
+               
             </Drawer>
 
         </Box>
